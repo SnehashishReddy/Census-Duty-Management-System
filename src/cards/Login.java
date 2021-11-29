@@ -10,7 +10,7 @@ public class Login extends JPanel {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Master.next();
+                Master.goTo("TeacherDashboard");
             }
         });
         add(nextButton);

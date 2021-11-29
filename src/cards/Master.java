@@ -14,10 +14,10 @@ public class Master {
         JFrame masterFrame = new JFrame();
 
         Login login = new Login();
-        Dashboard dashboard = new Dashboard();
+        TeacherDashboard dashboard = new TeacherDashboard();
 
         cardHolder.add(login, "Login");
-        cardHolder.add(dashboard, "Dashboard");
+        cardHolder.add(dashboard, "TeacherDashboard");
 
         masterFrame.getContentPane().add(cardHolder);
 
@@ -36,5 +36,20 @@ public class Master {
     public static void previous() {
         CardLayout c2 = (CardLayout) (cardHolder.getLayout());
         c2.previous(cardHolder);
+    }
+
+    public static void goTo(String name) {
+        CardLayout c3 = (CardLayout) (cardHolder.getLayout());
+        c3.show(cardHolder, name);
+    }
+
+    public static void first() {
+        CardLayout c4 = (CardLayout) (cardHolder.getLayout());
+        c4.first(cardHolder);
+    }
+
+    public static void last() {
+        CardLayout c5 = (CardLayout) (cardHolder.getLayout());
+        c5.last(cardHolder);
     }
 }
