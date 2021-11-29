@@ -11,6 +11,7 @@ public class Login extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Master.goTo("TeacherDashboard");
+                System.out.println("");
             }
         });
         add(nextButton);
