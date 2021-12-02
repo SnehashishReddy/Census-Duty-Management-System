@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class Login extends JPanel {
     public Login() {
-    	ImageIcon i = new ImageIcon("http://www.dataforall.org/dashboard/censusinfoindia_pca/img/logo.png");
+    	ImageIcon i = new ImageIcon(Master.class.getResource("/cards/logo.png"));
     	JLabel label = new JLabel(i,SwingConstants.HORIZONTAL);
         JButton nextButton = new JButton("View Stats");
         JButton TButton = new JButton("Teacher Dashboard Login");
