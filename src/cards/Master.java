@@ -17,7 +17,7 @@ public class Master {
         TeacherDashboard dashboard = new TeacherDashboard();
 
         cardHolder.add(login, "Login");
-        cardHolder.add(dashboard, "TeacherDashboard");
+        cardHolder.add(dashboard, "Teacher Dashboard");
 
         masterFrame.getContentPane().add(cardHolder);
 
