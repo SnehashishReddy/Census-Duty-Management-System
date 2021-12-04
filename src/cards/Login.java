@@ -17,7 +17,7 @@ public class Login extends JPanel implements ActionListener{
     JButton loginButton=new JButton("LOGIN");
     JButton resetButton=new JButton("RESET");
     JCheckBox showPassword=new JCheckBox(" Show Password");
-    Font font = new Font("arial",Font.BOLD,33);
+    Font font = new Font("Arial",Font.BOLD,15);
     public Login(String str) {
     	Type = str;
     	setBackground(Color.white);
@@ -35,6 +35,8 @@ public class Login extends JPanel implements ActionListener{
         showPassword.setPreferredSize(new Dimension(150,30));
         loginButton.setPreferredSize(new Dimension(100,30));
         resetButton.setPreferredSize(new Dimension(100,30));
+        userLabel.setFont(font);
+        passwordLabel.setFont(font);
         add(label);
         showPassword.setBackground(Color.white);
         panel.add(userLabel);
@@ -56,6 +58,12 @@ public class Login extends JPanel implements ActionListener{
     }
     public void actionPerformed(ActionEvent e) {
     	Object source = e.getSource();
+    	if(showPassword.isSelected()) {
+    		passwordField.setEchoChar((char)0);
+    	}
+    	else {
+    		passwordField.setEchoChar('*');
+    	}
     	if(source == resetButton) {
     		Master.goTo("Cover Page");
     	}
