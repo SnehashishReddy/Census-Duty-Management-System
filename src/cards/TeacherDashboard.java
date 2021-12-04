@@ -10,7 +10,7 @@ public class TeacherDashboard extends JPanel {
         previousButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Master.goTo("Login");
+                Master.goTo("Cover Page");
             }
         });
         add(previousButton);

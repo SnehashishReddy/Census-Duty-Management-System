@@ -13,10 +13,14 @@ public class Master {
 
         JFrame masterFrame = new JFrame();
 
-        Login login = new Login();
+        CoverPage cover = new CoverPage();
+        Login td = new Login("TD");
+        Login md = new Login("MD");
         TeacherDashboard dashboard = new TeacherDashboard();
-
-        cardHolder.add(login, "Login");
+        
+        cardHolder.add(cover, "Cover Page");
+        cardHolder.add(td, "Teacher Login");
+        cardHolder.add(md,"Manager Login");
         cardHolder.add(dashboard, "Teacher Dashboard");
 
         masterFrame.getContentPane().add(cardHolder);
