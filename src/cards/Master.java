@@ -1,31 +1,37 @@
 package cards;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 
 public class Master {
     static CardLayout cardLayout = new CardLayout();
 
     static JPanel cardHolder = new JPanel(cardLayout);
 
-    public Master() {
+    static JFrame masterFrame = new JFrame();
 
-        JFrame masterFrame = new JFrame();
+    public Master() {
 
         Login login = new Login();
         TeacherDashboard dashboard = new TeacherDashboard();
+        UserManagement usermanagement = new UserManagement();
+        RegPart regpart = new RegPart();
 
         cardHolder.add(login, "Login");
         cardHolder.add(dashboard, "TeacherDashboard");
+        cardHolder.add(usermanagement, "UserManagement");
+        cardHolder.add(regpart, "RegPart");
 
         masterFrame.getContentPane().add(cardHolder);
 
         masterFrame.setTitle("Census Duty Management System");
-        masterFrame.setSize(500, 500);
+        masterFrame.setSize(850, 500);
         masterFrame.setLocationRelativeTo(null);
         masterFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         masterFrame.setVisible(true);
+        masterFrame.setResizable(false);
     }
 
     public static void next() {
