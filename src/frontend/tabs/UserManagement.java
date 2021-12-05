@@ -1,4 +1,4 @@
-package cards;
+package frontend.tabs;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,7 +8,7 @@ import javax.swing.table.*;
 
 public class UserManagement extends JPanel {
 
-    UserManagement() {
+    public UserManagement() {
 
         /**
          * This method helps to generate Table with buttons like Add, Update, Delete
