@@ -7,7 +7,6 @@ import java.awt.event.*;
 public class Login extends JPanel implements ActionListener{
 	JPanel panel = new JPanel();
 	ImageIcon i = new ImageIcon(Master.class.getResource("/cards/Census-of-India-Recruitment.jpg"));
-	Image scaleImage = i.getImage().getScaledInstance(28, 28,Image.SCALE_DEFAULT);
 	JLabel label = new JLabel(i,SwingConstants.CENTER);
     JLabel userLabel=new JLabel("USERNAME");
     JLabel passwordLabel=new JLabel("PASSWORD");
@@ -68,10 +67,10 @@ public class Login extends JPanel implements ActionListener{
     		passwordField.setEchoChar('*');
     	}
         if(source == TButton) {
-    		Master.goTo("Teacher Login");
+    		Master.goTo("Teacher Dashboard");
     	}
     	else if(source == MButton) {
-    		Master.goTo("Manager Login");
+    		Master.goTo("Manager Dashboard");
     	}
     	else if(source == nextButton) {
     		Master.goTo("View Statstics");
