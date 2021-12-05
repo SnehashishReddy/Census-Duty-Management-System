@@ -13,21 +13,18 @@ public class Master {
 
         JFrame masterFrame = new JFrame();
 
-        CoverPage cover = new CoverPage();
-        Login td = new Login("TD");
-        Login md = new Login("MD");
+        Login login = new Login();
         TeacherDashboard dashboard = new TeacherDashboard();
         
-        cardHolder.add(cover, "Cover Page");
-        cardHolder.add(td, "Teacher Login");
-        cardHolder.add(md,"Manager Login");
+        cardHolder.add(login, "Login");
         cardHolder.add(dashboard, "Teacher Dashboard");
 
         masterFrame.getContentPane().add(cardHolder);
 
         masterFrame.setTitle("Census Duty Management System");
-        masterFrame.setSize(500, 500);
+        masterFrame.setSize(850, 500);
         masterFrame.setLocationRelativeTo(null);
+        masterFrame.setDefaultLookAndFeelDecorated(true);
         masterFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         masterFrame.setVisible(true);
     }

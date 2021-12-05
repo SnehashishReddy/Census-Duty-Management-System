@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Login extends JPanel implements ActionListener{
-	String Type;
 	JPanel panel = new JPanel();
 	ImageIcon i = new ImageIcon(Master.class.getResource("/cards/Census-of-India-Recruitment.jpg"));
 	Image scaleImage = i.getImage().getScaledInstance(28, 28,Image.SCALE_DEFAULT);
@@ -14,47 +13,51 @@ public class Login extends JPanel implements ActionListener{
     JLabel passwordLabel=new JLabel("PASSWORD");
     JTextField userTextField=new JTextField();
     JPasswordField passwordField=new JPasswordField();
-    JButton loginButton=new JButton("LOGIN");
-    JButton resetButton=new JButton("RESET");
+    JButton nextButton = new JButton("View Popolation Statstics");
+    JButton TButton = new JButton("Teacher Dashboard Login");
+    JButton MButton = new JButton("Manager Dashboard Login");
     JCheckBox showPassword=new JCheckBox(" Show Password");
     Font font = new Font("Arial",Font.BOLD,15);
-    public Login(String str) {
-    	Type = str;
+    public Login() {
     	setBackground(Color.white);
+    	nextButton.setFont(font);
+        TButton.setFont(font);
+        MButton.setFont(font);
     	userLabel.setBounds(50,150,100,30);
         passwordLabel.setBounds(50,220,100,30);
         userTextField.setBounds(150,150,150,30);
         passwordField.setBounds(150,220,150,30);
         showPassword.setBounds(150,250,150,30);
-        loginButton.setBounds(50,300,100,30);
-        resetButton.setBounds(200,300,100,30);
+        
     	userLabel.setPreferredSize(new Dimension(100,30));
         passwordLabel.setPreferredSize(new Dimension(100,30));
         userTextField.setPreferredSize(new Dimension(130,20));
         passwordField.setPreferredSize(new Dimension(130,20));
         showPassword.setPreferredSize(new Dimension(150,30));
-        loginButton.setPreferredSize(new Dimension(100,30));
-        resetButton.setPreferredSize(new Dimension(100,30));
+        
         userLabel.setFont(font);
         passwordLabel.setFont(font);
-        add(label);
+        add(label,BorderLayout.CENTER);
         showPassword.setBackground(Color.white);
         panel.add(userLabel);
         panel.add(userTextField);
         panel.add(passwordLabel);
         panel.add(passwordField);
         panel.add(showPassword);
-        panel.add(loginButton);
-        panel.add(resetButton);
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.setPreferredSize(new Dimension(250,200));
+        panel.setPreferredSize(new Dimension(250,100));
         panel.setBackground(Color.white);
         panel.setFont(font);
-        add(panel);
-        
-        loginButton.addActionListener(this);
-        resetButton.addActionListener(this);
+        add(Box.createRigidArea(new Dimension(800,2)));
+        add(panel, BorderLayout.CENTER);
+        add(Box.createRigidArea(new Dimension(800,1)));
+        add(nextButton);
+        add(TButton);
+        add(MButton);
         showPassword.addActionListener(this);
+        nextButton.addActionListener(this);
+        TButton.addActionListener(this);
+        MButton.addActionListener(this);
     }
     public void actionPerformed(ActionEvent e) {
     	Object source = e.getSource();
@@ -64,16 +67,14 @@ public class Login extends JPanel implements ActionListener{
     	else {
     		passwordField.setEchoChar('*');
     	}
-    	if(source == resetButton) {
-    		Master.goTo("Cover Page");
+        if(source == TButton) {
+    		Master.goTo("Teacher Login");
     	}
-    	else if(source == loginButton) {
-    		if(Type == "TD") {
-    			Master.goTo("Teacher Dashboard");
-    		}
-    		else if(Type == "MD") {
-    			Master.goTo("Manager Dashboard");
-    		}
+    	else if(source == MButton) {
+    		Master.goTo("Manager Login");
+    	}
+    	else if(source == nextButton) {
+    		Master.goTo("View Statstics");
     	}
     }
 }
