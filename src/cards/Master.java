@@ -15,16 +15,17 @@ public class Master {
 
         Login login = new Login();
         TeacherDashboard dashboard = new TeacherDashboard();
+        Form form = new Form();
         
         cardHolder.add(login, "Login");
         cardHolder.add(dashboard, "Teacher Dashboard");
+        cardHolder.add(form, "Form");
 
         masterFrame.getContentPane().add(cardHolder);
 
         masterFrame.setTitle("Census Duty Management System");
         masterFrame.setSize(850, 500);
         masterFrame.setLocationRelativeTo(null);
-        masterFrame.setDefaultLookAndFeelDecorated(true);
         masterFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         masterFrame.setVisible(true);
     }
