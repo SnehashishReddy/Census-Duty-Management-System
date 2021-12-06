@@ -16,11 +16,13 @@ public class Master {
         Login login = new Login();
         TeacherDashboard dashboard = new TeacherDashboard();
         Form form = new Form();
+        Statistics stats = new Statistics();
         
         cardHolder.add(login, "Login");
         cardHolder.add(dashboard, "Teacher Dashboard");
         cardHolder.add(form, "Form");
-
+        cardHolder.add(stats,"View Statistics");
+        
         masterFrame.getContentPane().add(cardHolder);
 
         masterFrame.setTitle("Census Duty Management System");

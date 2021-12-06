@@ -369,7 +369,6 @@ public class Form extends JPanel implements ActionListener{
 		Image.setPreferredSize(new Dimension(400,365));
 		add(panel);
 		panel.setPreferredSize(new Dimension(400,365));
-		
 		add(new JSeparator(SwingConstants.VERTICAL));
 		panel1.add(new JScrollPane(table));
 		panel1.setPreferredSize(new Dimension(400,365));
@@ -405,7 +404,7 @@ public class Form extends JPanel implements ActionListener{
 			
 		}
 		if(source == submit) {
-			JOptionPane.showMessageDialog(submit, "Submitted Successfully");
+			JOptionPane.showMessageDialog(title, "Submitted Successfully");
 			fn.setText(""); 
 			ln.setText("");
 			mn.setText("");
