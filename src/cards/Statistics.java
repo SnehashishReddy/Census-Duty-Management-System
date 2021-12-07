@@ -27,12 +27,10 @@ public class Statistics extends JPanel implements ActionListener{
 		  if (value == null || value.length == 0)
 		  return;
 		  double minValue = 0;
-		  double maxValue = 0;
+		  double maxValue = 50;
 		  for (int i = 0; i < value.length; i++) {
 		  if (minValue > value[i])
 		  minValue = value[i];
-		  if (maxValue < value[i])
-		  maxValue = value[i];
 		  }
 		  Dimension dim = new Dimension(850,400);
 		  int clientWidth = dim.width;
