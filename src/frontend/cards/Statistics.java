@@ -5,15 +5,25 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class Statistics extends JPanel {
-    JPanel panel = new JPanel();
+public class Statistics extends JPanel implements ActionListener {
+    JPanel panel = new JPanel(new BorderLayout());
+    JButton Go = new JButton("Go Back");
     private double[] value = { 1, 2, 12, 7, 0, 12, 1, 4, 6, 8 };
-    private String[] languages = { "Birth \nRate", "Death \nRate", "Male", "Female", "Others", "", "", "", "", "" };
+    private String[] languages = { "Birth \nRate", "Death \nRate", "Male", "Female", "Others", "Employed", "Unemployed",
+            "Educated", "Uneducated", "Indian", "Others" };
     String title;
+    JLabel title1 = new JLabel("Census Statistics View");
 
     public Statistics() {
 
-        title = "Census Data Statistics";
+        // add(Box.createRigidArea(new Dimension(25, 25)));
+        title1.setFont(new Font("Arial", Font.PLAIN, 32));
+        title1.setSize(700, 30);
+        panel.add(title1, BorderLayout.NORTH);
+        panel.add(Go, BorderLayout.CENTER);
+        add(panel);
+        title = "                       ";
+        Go.addActionListener(this);
     }
 
     public void paintComponent(Graphics graphics) {
@@ -21,18 +31,18 @@ public class Statistics extends JPanel {
         if (value == null || value.length == 0)
             return;
         double minValue = 0;
-        double maxValue = 0;
+        double maxValue = 13;
         for (int i = 0; i < value.length; i++) {
             if (minValue > value[i])
                 minValue = value[i];
-            if (maxValue < value[i])
-                maxValue = value[i];
+            // if (maxValue < value[i])
+            // maxValue = value[i];
         }
-        Dimension dim = new Dimension(800, 400);
+        Dimension dim = new Dimension(850, 550);
         int clientWidth = dim.width;
         int clientHeight = dim.height;
         int barWidth = clientWidth / value.length;
-        Font titleFont = new Font("Arial", Font.BOLD, 33);
+        Font titleFont = new Font("Book Antiqua", Font.PLAIN, 33);
         FontMetrics titleFontMetrics = graphics.getFontMetrics(titleFont);
         Font labelFont = new Font("Times New Roman", Font.PLAIN, 17);
         FontMetrics labelFontMetrics = graphics.getFontMetrics(labelFont);
@@ -65,6 +75,13 @@ public class Statistics extends JPanel {
             int labelWidth = labelFontMetrics.stringWidth(languages[j]);
             p = j * barWidth + (barWidth - labelWidth) / 2;
             graphics.drawString(languages[j], p, q);
+        }
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        if (source == Go) {
+            frontend.Master.goTo("Login");
         }
     }
 }
