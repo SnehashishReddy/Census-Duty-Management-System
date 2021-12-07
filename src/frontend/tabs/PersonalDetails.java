@@ -248,8 +248,8 @@ public class PersonalDetails extends JPanel {
         tmanager.setBounds(600, 80, 200, 20);
         tnumberofforms.setBounds(600, 110, 200, 20);
         tareas.setBounds(600, 140, 200, 80);
-        backButton.setBounds(250, 400, 100, 20);
-        saveButton.setBounds(450, 400, 100, 20);
+        backButton.setBounds(250, 360, 100, 20);
+        saveButton.setBounds(450, 360, 100, 20);
 
         // assign gender
         male.setSelected(temp.getGender() == 'M');
