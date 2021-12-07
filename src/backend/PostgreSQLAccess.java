@@ -12,7 +12,7 @@ public class PostgreSQLAccess {
     private static final String user = "kabdtcrsfpnwop";
     private static final String password = "da9ecc63fbf7472d503ce16634492ca7ba50dcc14ace050c1d86eee940f2f01c";
 
-    public static void main(String[] args) {
+    public static void run() {
         Connection c = null;
         try {
             Class.forName("org.postgresql.Driver");

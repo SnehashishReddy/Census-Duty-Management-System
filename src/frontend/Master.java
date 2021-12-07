@@ -2,6 +2,8 @@ package frontend;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
+
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -40,7 +42,7 @@ public class Master {
         masterFrame.setLocationRelativeTo(null);
         masterFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         masterFrame.setVisible(true);
-        // masterFrame.setResizable(false);
+        masterFrame.setResizable(false);
     }
 
     // private Constructor to prevent Instantiation

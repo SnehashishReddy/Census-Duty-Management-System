@@ -9,5 +9,6 @@ public class Main {
 
     public static void run() {
         System.out.println("Hello World from Main!");
+        PostgreSQLAccess.run();
     }
 }

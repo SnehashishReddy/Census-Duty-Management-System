@@ -148,8 +148,8 @@ public class PersonalDetails extends JPanel {
 
     public PersonalDetails() {
 
-        temp temp = new temp("Username", "password", "Sid", "AM001", "0000000000", "abc@gmail.com", 'F', "25/02/2002",
-                "Address", "manager", "school", 20, "areas");
+        temp temp = new temp("Username123", "password123", "Michael", "AM0001", "4351248557", "abc@gmail.com", 'M', "25/02/2002",
+                "No. 15, 6th street, Ashok Nagar, Chennai-83", "AMM023", "PCS School", 20, "Ashok nagar");
 
         // Create new JLabel
         heading = new JLabel("Edit Profile");
