@@ -132,21 +132,21 @@ public class Form extends JPanel implements ActionListener{
 	JComboBox nation = new JComboBox(nati);
 	DefaultTableModel model = new DefaultTableModel(column,0);
 	JTable table = new JTable(model);
-	Font font = new Font("Arial",Font.BOLD,15);
+	Font font = new Font("Arial",Font.BOLD,20);
 	
 	Form(){
-        title.setFont(new Font("Arial", Font.PLAIN, 30));
+        title.setFont(new Font("Arial", Font.PLAIN, 35));
         title.setSize(300, 30);
         add(title);
-        add(Box.createRigidArea(new Dimension(850,10)));
+        add(Box.createRigidArea(new Dimension(850,15)));
         
 		houseID.setFont(font);
-		houseID.setPreferredSize(new Dimension(150,20));
+		houseID.setPreferredSize(new Dimension(150,25));
 		panel.add(houseID);
 		ID.setPreferredSize(new Dimension(150,20));
 		panel.add(ID);
 		
-		No_of_Members.setPreferredSize(new Dimension(250,20));
+		No_of_Members.setPreferredSize(new Dimension(250,25));
 		No_of_Members.setFont(font);
 		panel.add(No_of_Members);
 		TotalMembers.setPreferredSize(new Dimension(50,20));
@@ -156,47 +156,47 @@ public class Form extends JPanel implements ActionListener{
 		
 		Image.add(Box.createRigidArea(new Dimension(400,50)));
 		
-		Address.setFont(new Font("Arial",Font.ITALIC, 20));
-		Address.setPreferredSize(new Dimension(300,25));
+		Address.setFont(new Font("Arial",Font.ITALIC, 30));
+		Address.setPreferredSize(new Dimension(300,35));
 		panel.add(Address);
 		
-		aptno.setPreferredSize(new Dimension(300,20));
+		aptno.setPreferredSize(new Dimension(300,25));
 		aptno.setFont(font);
 		panel.add(aptno);
 		num.setPreferredSize(new Dimension(300,20));
 		panel.add(num);
 		
-		street.setPreferredSize(new Dimension(150,20));
+		street.setPreferredSize(new Dimension(150,25));
 		street.setFont(font);
 		panel.add(street);
 		sno.setPreferredSize(new Dimension(150,20));
 		panel.add(sno);
 		
-		sname.setPreferredSize(new Dimension(150,20));
+		sname.setPreferredSize(new Dimension(150,25));
 		sname.setFont(font);
 		panel.add(sname);
 		sna.setPreferredSize(new Dimension(150,20));
 		panel.add(sna);
 		
-		city.setPreferredSize(new Dimension(150,20));
+		city.setPreferredSize(new Dimension(150,25));
 		city.setFont(font);
 		panel.add(city);
 		ci.setPreferredSize(new Dimension(150,20));
 		panel.add(ci);
 		
-		state.setPreferredSize(new Dimension(150,20));
+		state.setPreferredSize(new Dimension(150,25));
 		state.setFont(font);
 		panel.add(state);
 		st.setPreferredSize(new Dimension(150,20));
 		panel.add(st);
 		
-		zip.setPreferredSize(new Dimension(150,20));
+		zip.setPreferredSize(new Dimension(150,25));
 		zip.setFont(font);
 		panel.add(zip);
 		pin.setPreferredSize(new Dimension(150,20));
 		panel.add(pin);
 		
-		Land.setPreferredSize(new Dimension(150,20));
+		Land.setPreferredSize(new Dimension(150,25));
 		Land.setFont(font);
 		panel.add(Land);
 		line.setPreferredSize(new Dimension(150,20));
@@ -205,8 +205,8 @@ public class Form extends JPanel implements ActionListener{
         
 		
 		add(new JSeparator(SwingConstants.HORIZONTAL));
-		member.setFont(new Font("Arial",Font.ITALIC, 18));
-		member.setPreferredSize(new Dimension(250,17));
+		member.setFont(new Font("Arial",Font.ITALIC, 25));
+		member.setPreferredSize(new Dimension(250,30));
 		wind.add(member);
 		ad.addActionListener(new ActionListener() {
             @Override
@@ -250,112 +250,112 @@ public class Form extends JPanel implements ActionListener{
 		wind.add(clear);
 		wind.add(ad);
 		
-		fname.setPreferredSize(new Dimension(155,15));
+		fname.setPreferredSize(new Dimension(155,20));
 		fname.setFont(font);
 		wind.add(fname);
-		fn.setPreferredSize(new Dimension(140,18));
+		fn.setPreferredSize(new Dimension(140,20));
 		wind.add(fn);
 		
-		mname.setPreferredSize(new Dimension(155,15));
+		mname.setPreferredSize(new Dimension(155,20));
 		mname.setFont(font);
 		wind.add(mname);
-		mn.setPreferredSize(new Dimension(140,18));
+		mn.setPreferredSize(new Dimension(140,20));
 		wind.add(mn);
 		
-		lname.setPreferredSize(new Dimension(155,15));
+		lname.setPreferredSize(new Dimension(155,20));
 		lname.setFont(font);
 		wind.add(lname);
-		ln.setPreferredSize(new Dimension(140,18));
+		ln.setPreferredSize(new Dimension(140,20));
 		wind.add(ln);
 		
-		mother.setPreferredSize(new Dimension(155,15));
+		mother.setPreferredSize(new Dimension(155,20));
 		mother.setFont(font);
 		wind.add(mother);
-		mom.setPreferredSize(new Dimension(140,18));
+		mom.setPreferredSize(new Dimension(140,20));
 		wind.add(mom);
 		
-		father.setPreferredSize(new Dimension(155,15));
+		father.setPreferredSize(new Dimension(155,20));
 		father.setFont(font);
 		wind.add(father);
-		dad.setPreferredSize(new Dimension(140,18));
+		dad.setPreferredSize(new Dimension(140,20));
 		wind.add(dad);
 		
-		phone.setPreferredSize(new Dimension(155,15));
+		phone.setPreferredSize(new Dimension(155,20));
 		phone.setFont(font);
 		wind.add(phone);
-		con.setPreferredSize(new Dimension(140,18));
+		con.setPreferredSize(new Dimension(140,20));
 		wind.add(con); 
 		
-		aadhar.setPreferredSize(new Dimension(155,15));
+		aadhar.setPreferredSize(new Dimension(155,20));
 		aadhar.setFont(font);
 		wind.add(aadhar);
-		AadNo.setPreferredSize(new Dimension(140,18));
+		AadNo.setPreferredSize(new Dimension(140,20));
 		wind.add(AadNo);
 		panel.add(Box.createRigidArea(new Dimension(400,5)));
 		
 		owner.setFont(font);
-		owner.setPreferredSize(new Dimension(200,15));
+		owner.setPreferredSize(new Dimension(200,20));
 		wind.add(owner);
-		yes.setPreferredSize(new Dimension(60,18));
+		yes.setPreferredSize(new Dimension(60,20));
 		yes.setActionCommand("Y");
 		wind.add(yes);
-		no.setPreferredSize(new Dimension(60,18));
+		no.setPreferredSize(new Dimension(60,20));
 		no.setActionCommand("N");
 		wind.add(no);
 		owngrp.add(yes);
 		owngrp.add(no);
 		
 		Relation.setFont(font);
-		Relation.setPreferredSize(new Dimension(180,15));
+		Relation.setPreferredSize(new Dimension(200,20));
 		wind.add(Relation);
 		rela.setPreferredSize(new Dimension(150,20));
 		wind.add(rela);
 		
 		blood.setFont(font);
-		blood.setPreferredSize(new Dimension(60,15));
+		blood.setPreferredSize(new Dimension(80,20));
 		wind.add(blood);
-		Blood.setPreferredSize(new Dimension(60,18));
+		Blood.setPreferredSize(new Dimension(60,20));
 		wind.add(Blood);
 		
 		DOB.setFont(font);
-		DOB.setPreferredSize(new Dimension(50,15));
+		DOB.setPreferredSize(new Dimension(65,20));
 		wind.add(DOB);
-		date.setPreferredSize(new Dimension(50,18));
+		date.setPreferredSize(new Dimension(50,20));
 		wind.add(date);
-		month.setPreferredSize(new Dimension(50,18));
+		month.setPreferredSize(new Dimension(50,20));
 		wind.add(month);
-		year.setPreferredSize(new Dimension(60,18));
+		year.setPreferredSize(new Dimension(60,20));
 		wind.add(year);
 		
 		gender.setFont(font);
-		gender.setPreferredSize(new Dimension(100,15));
+		gender.setPreferredSize(new Dimension(100,20));
 		wind.add(gender);
-		male.setPreferredSize(new Dimension(55,18));
+		male.setPreferredSize(new Dimension(55,20));
 		male.setActionCommand("M");
 		wind.add(male);
-		female.setPreferredSize(new Dimension(70,18));
+		female.setPreferredSize(new Dimension(70,20));
 		female.setActionCommand("F");
 		wind.add(female);
-		others.setPreferredSize(new Dimension(65,18));
+		others.setPreferredSize(new Dimension(65,20));
 		others.setActionCommand("O");
 		wind.add(others);
 		gengrp.add(male);
 		gengrp.add(female);
 		gengrp.add(others);
 		
-		Edu.setPreferredSize(new Dimension(155,15));
+		Edu.setPreferredSize(new Dimension(155,20));
 		Edu.setFont(font);
 		wind.add(Edu);
-	    qua.setPreferredSize(new Dimension(140,18));
+	    qua.setPreferredSize(new Dimension(140,20));
 		wind.add(qua); 
 		
-		Occ.setPreferredSize(new Dimension(155,15));
+		Occ.setPreferredSize(new Dimension(155,20));
 		Occ.setFont(font);
 		wind.add(Occ);
-		work.setPreferredSize(new Dimension(140,18));
+		work.setPreferredSize(new Dimension(140,20));
 		wind.add(work);
 		
-		nat.setPreferredSize(new Dimension(155,15));
+		nat.setPreferredSize(new Dimension(155,22));
 		nat.setFont(font);
 		wind.add(nat);
 		nation.setPreferredSize(new Dimension(140,20));
@@ -368,11 +368,11 @@ public class Form extends JPanel implements ActionListener{
 		add(Image);
 		Image.setPreferredSize(new Dimension(400,365));
 		add(panel);
-		panel.setPreferredSize(new Dimension(400,365));
+		panel.setPreferredSize(new Dimension(400,400));
 		add(new JSeparator(SwingConstants.VERTICAL));
 		panel1.add(new JScrollPane(table));
-		panel1.setPreferredSize(new Dimension(400,365));
-		wind.setPreferredSize(new Dimension(400,365));
+		panel1.setPreferredSize(new Dimension(400,400));
+		wind.setPreferredSize(new Dimension(400,400));
 		
 		
 		gbutton.add(Go);

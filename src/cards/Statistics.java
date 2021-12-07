@@ -4,15 +4,23 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Statistics extends JPanel{
-	JPanel panel = new JPanel();
+public class Statistics extends JPanel implements ActionListener{
+	JPanel panel = new JPanel(new BorderLayout());
+	JButton Go = new JButton("Go Back");
 	private double[] value = {1,2,12,7,0,12,1,4,6,8};
-	private String[] languages = {"Birth \nRate","Death \nRate","Male","Female","Others","","","","",""};
+	private String[] languages = {"Birth \nRate","Death \nRate","Male","Female","Others","Employed","Unemployed","Educated","Uneducated","Indian","Others"};
 	String title;
-	
+	JLabel title1 = new JLabel("Census Statistics View");
 	Statistics(){
-		
-		 title = "Census Data Statistics";
+		  
+		  add(Go);
+		  //add(Box.createRigidArea(new Dimension(25,25)));
+		  title1.setFont(new Font("Arial", Font.PLAIN, 32));
+	      title1.setSize(700, 30);
+		  panel.add(title1);
+		  add(panel);
+		  title = "                       ";
+		  Go.addActionListener(this);
 		  }
 		  public void paintComponent(Graphics graphics) {
 		  super.paintComponent(graphics);
@@ -26,11 +34,11 @@ public class Statistics extends JPanel{
 		  if (maxValue < value[i])
 		  maxValue = value[i];
 		  }
-		  Dimension dim = new Dimension(800,400);
+		  Dimension dim = new Dimension(850,400);
 		  int clientWidth = dim.width;
 		  int clientHeight = dim.height;
 		  int barWidth = clientWidth / value.length;
-		  Font titleFont = new Font("Arial", Font.BOLD, 33);
+		  Font titleFont = new Font("Book Antiqua", Font.PLAIN, 33);
 		  FontMetrics titleFontMetrics = graphics.getFontMetrics(titleFont);
 		  Font labelFont = new Font("Times New Roman", Font.PLAIN, 17);
 		  FontMetrics labelFontMetrics = graphics.getFontMetrics(labelFont);
@@ -65,4 +73,10 @@ public class Statistics extends JPanel{
 		  graphics.drawString(languages[j], p, q);
 }
 }
+		  public void actionPerformed(ActionEvent e) {
+			  Object source = e.getSource();
+			  if(source == Go) {
+				  Master.goTo("Login");
+			  }
+		  }
 }
