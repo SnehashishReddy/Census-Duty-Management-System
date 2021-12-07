@@ -1,47 +1,445 @@
-
 package frontend.tabs;
 
+import javax.swing.*;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
 
 public class Form extends JPanel implements ActionListener {
     String dates[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
             "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
     String months[] = { "Jan", "feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sup", "Oct", "Nov", "Dec" };
     String years[] = { "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006",
-            "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019" };
-    JFrame frame = new JFrame("Census Data Collection Form");
+            "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019",
+            "2020", "2021" };
+    String column[] = { "Name", "Date of Birth", "Aadhar No.", "Gender" };
+    String rel[] = { "Mother", "Father", "Brother", "Sister", "Wife", "Husband", "Mother in law", "Father in Law",
+            "Son", "Daughter", "Son in Law", "Daughter in Law", "Relatives", "Others" };
+    String bgrp[] = { "A+VE", "A-VE", "B+VE", "B-VE", "O+VE", "O-VE", "AB+VE", "AB-VE" };
+    String nati[] = { "Indian", "Afghan", "Albanian", "Algerian", "American",
+            "Andorran", "Angolan", "Anguillan", "Citizen of Antigua and Barbuda",
+            "Argentine", "Armenian", "Australian", "Austrian",
+            "Azerbaijani", "Bahamian", "Bahraini", "Bangladeshi", "Barbadian",
+            "Belarusian", "Belgian", "Belizean", "Beninese",
+            "Bermudian", "Bhutanese", "Bolivian", "Citizen of Bosnia and Herzegovina",
+            "Botswanan", "Brazilian", "British", "British Virgin Islander",
+            "Bruneian", "Bulgarian", "Burkinan", "Burmese",
+            "Burundian", "Cambodian", "Cameroonian", "Canadian", "Cape Verdean",
+            "Cayman Islander", "Central African", "Chadian", "Chilean",
+            "Chinese", "Colombian", "Comoran", "Congolese (Congo)",
+            "Congolese (DRC)", "Cook Islander", "Costa Rican", "Croatian",
+            "Cuban", "Cymraes", "Cymro", "Cypriot",
+            "Czech", "Danish", "Djiboutian", "Dominican", "Citizen of the Dominican Republic",
+            "Dutch", "East Timorese", "Ecuadorean", "Egyptian", "Emirati",
+            "English", "Equatorial Guinean", "Eritrean", "Estonian",
+            "Ethiopian", "Faroese", "Fijian", "Filipino", "Finnish",
+            "French", "Gabonese", "Gambian", "Georgian", "German",
+            "Ghanaian", "Gibraltarian", "Greek", "Greenlandic",
+            "Grenadian", "Guamanian", "Guatemalan", "Citizen of Guinea-Bissau",
+            "Guinean", "Guyanese", "Haitian", "Honduran", "Hong Konger", "Hungarian",
+            "Icelandic", "Indonesian", "Iranian", "Iraqi", "Irish", "Israeli", "Italian",
+            "Ivorian", "Jamaican", "Japanese", "Jordanian", "Kazakh", "Kenyan", "Kittitian", "Citizen of Kiribati",
+            "Kosovan", "Kuwaiti", "Kyrgyz", "Lao", "Latvian", "Lebanese", "Liberian",
+            "Libyan", "Liechtenstein citizen", "Lithuanian", "Luxembourger",
+            "Macanese", "Macedonian", "Malagasy", "Malawian",
+            "Malaysian", "Maldivian", "Malian", "Maltese",
+            "Marshallese", "Martiniquais", "Mauritanian", "Mauritian",
+            "Mexican", "Micronesian", "Moldovan", "Monegasque",
+            "Mongolian", "Montenegrin", "Montserratian", "Moroccan",
+            "Mosotho", "Mozambican", "Namibian", "Nauruan", "Nepalese", "New Zealander",
+            "Nicaraguan", "Nigerian", "Nigerien", "Niuean",
+            "North Korean", "Northern Irish", "Norwegian", "Omani", "Pakistani", "Palauan", "Palestinian", "Panamanian",
+            "Papua New Guinean", "Paraguayan", "Peruvian", "Pitcairn Islander",
+            "Polish", "Portuguese", "Prydeinig", "Puerto Rican", "Qatari", "Romanian", "Russian", "Rwandan",
+            "Salvadorean", "Sammarinese", "Samoan", "Sao Tomean",
+            "Saudi Arabian", "Scottish", "Senegalese", "Serbian",
+            "Citizen of Seychelles", "Sierra Leonean", "Singaporean", "Slovak",
+            "Slovenian", "Solomon Islander", "Somali", "South African",
+            "South Korean", "South Sudanese", "Spanish", "Sri Lankan",
+            "St Helenian", "St Lucian", "Stateless", "Sudanese",
+            "Surinamese", "Swazi", "Swedish", "Swiss",
+            "Syrian", "Taiwanese", "Tajik", "Tanzanian", "Thai",
+            "Togolese", "Tongan", "Trinidadian", "Tristanian",
+            "Tunisian", "Turkish", "Turkmen", "Turks and Caicos Islander",
+            "Tuvaluan", "Ugandan", "Ukrainian", "Uruguayan", "Uzbek",
+            "Vatican citizen", "Citizen of Vanuatu", "Venezuelan", "Vietnamese",
+            "Vincentian", "Wallisian", "Welsh", "Yemeni", "Zambian", "Zimbabwean" };
     JPanel panel = new JPanel();
+    JPanel Image = new JPanel();
+    JPanel gbutton = new JPanel();
+    ImageIcon i = new ImageIcon(frontend.Master.class.getResource("/assets/OIP.jpeg"));
+    JLabel label = new JLabel(i, SwingConstants.CENTER);
+    JPanel wind = new JPanel();
+    JPanel panel1 = new JPanel(new BorderLayout());
+    JLabel title = new JLabel("Census Registration Form");
+    JLabel member = new JLabel("Personal Details :  ");
+    JButton next = new JButton("Next");
+    JButton Go = new JButton("Go Back");
+    JButton ad = new JButton("Add");
+    JButton clear = new JButton("Clear");
     JButton submit = new JButton("Submit");
     JLabel houseID = new JLabel("HouseID : ");
     JLabel Address = new JLabel("Address : ");
     JLabel No_of_Members = new JLabel("Total Number of House Members : ");
-    JLabel name = new JLabel("Name : ");
-    JLabel DOB = new JLabel("Date of Birth : ");
+    JLabel street = new JLabel("Street No. : ");
+    JLabel sname = new JLabel("Street Name : ");
+    JLabel aptno = new JLabel("Apt No./ Bunglow No. : ");
+    JLabel city = new JLabel("City : ");
+    JLabel state = new JLabel("State : ");
+    JLabel zip = new JLabel("Pincode : ");
+    JLabel Land = new JLabel("LandLine No. : ");
+    JLabel fname = new JLabel("First Name : ");
+    JLabel mname = new JLabel("Middle Name : ");
+    JLabel lname = new JLabel("Last Name : ");
+    JLabel mother = new JLabel("Mother Name : ");
+    JLabel father = new JLabel("Father Name : ");
+    JLabel DOB = new JLabel("DOB : ");
     JLabel aadhar = new JLabel("Aadhar No. : ");
     JLabel gender = new JLabel("Gender : ");
+    JLabel Relation = new JLabel("Relation to Owner : ");
+    JLabel owner = new JLabel("House Owner : ");
+    JLabel phone = new JLabel("Contact No. : ");
+    JLabel Edu = new JLabel("Qualification : ");
+    JLabel Occ = new JLabel("Occupation : ");
+    JLabel nat = new JLabel("Nationality : ");
+    JLabel blood = new JLabel("Blood : ");
     JRadioButton male = new JRadioButton("Male");
     JRadioButton female = new JRadioButton("Female");
     JRadioButton others = new JRadioButton("Others");
     ButtonGroup gengrp = new ButtonGroup();
+    JRadioButton yes = new JRadioButton("Yes");
+    JRadioButton no = new JRadioButton("No");
+    ButtonGroup owngrp = new ButtonGroup();
     JTextField ID = new JTextField();
     JTextField TotalMembers = new JTextField();
     JTextField AadNo = new JTextField();
-    JTextField nm = new JTextField();
-    TextArea Add = new TextArea(10, 11);
+    JTextField fn = new JTextField();
+    JTextField mn = new JTextField();
+    JTextField ln = new JTextField();
+    JTextField mom = new JTextField();
+    JTextField dad = new JTextField();
+    JTextField con = new JTextField();
+    JTextField qua = new JTextField();
+    JTextField work = new JTextField();
+    JTextField sno = new JTextField();
+    JTextField sna = new JTextField();
+    JTextField num = new JTextField();
+    JTextField ci = new JTextField();
+    JTextField st = new JTextField();
+    JTextField pin = new JTextField();
+    JTextField line = new JTextField();
     JComboBox date = new JComboBox(dates);
     JComboBox month = new JComboBox(months);
     JComboBox year = new JComboBox(years);
+    JComboBox rela = new JComboBox(rel);
+    JComboBox Blood = new JComboBox(bgrp);
+    JComboBox nation = new JComboBox(nati);
+    DefaultTableModel model = new DefaultTableModel(column, 0);
+    JTable table = new JTable(model);
+    Font font = new Font("Arial", Font.BOLD, 15);
 
     public Form() {
+        title.setFont(new Font("Arial", Font.PLAIN, 30));
+        title.setSize(300, 30);
+        add(title);
+        add(Box.createRigidArea(new Dimension(850, 10)));
+
+        houseID.setFont(font);
+        houseID.setPreferredSize(new Dimension(150, 20));
+        panel.add(houseID);
+        ID.setPreferredSize(new Dimension(150, 20));
+        panel.add(ID);
+
+        No_of_Members.setPreferredSize(new Dimension(250, 20));
+        No_of_Members.setFont(font);
+        panel.add(No_of_Members);
+        TotalMembers.setPreferredSize(new Dimension(50, 20));
+        panel.add(TotalMembers);
+
+        panel.add(Box.createRigidArea(new Dimension(400, 5)));
+
+        Image.add(Box.createRigidArea(new Dimension(400, 50)));
+
+        Address.setFont(new Font("Arial", Font.ITALIC, 20));
+        Address.setPreferredSize(new Dimension(300, 25));
+        panel.add(Address);
+
+        aptno.setPreferredSize(new Dimension(300, 20));
+        aptno.setFont(font);
+        panel.add(aptno);
+        num.setPreferredSize(new Dimension(300, 20));
+        panel.add(num);
+
+        street.setPreferredSize(new Dimension(150, 20));
+        street.setFont(font);
+        panel.add(street);
+        sno.setPreferredSize(new Dimension(150, 20));
+        panel.add(sno);
+
+        sname.setPreferredSize(new Dimension(150, 20));
+        sname.setFont(font);
+        panel.add(sname);
+        sna.setPreferredSize(new Dimension(150, 20));
+        panel.add(sna);
+
+        city.setPreferredSize(new Dimension(150, 20));
+        city.setFont(font);
+        panel.add(city);
+        ci.setPreferredSize(new Dimension(150, 20));
+        panel.add(ci);
+
+        state.setPreferredSize(new Dimension(150, 20));
+        state.setFont(font);
+        panel.add(state);
+        st.setPreferredSize(new Dimension(150, 20));
+        panel.add(st);
+
+        zip.setPreferredSize(new Dimension(150, 20));
+        zip.setFont(font);
+        panel.add(zip);
+        pin.setPreferredSize(new Dimension(150, 20));
+        panel.add(pin);
+
+        Land.setPreferredSize(new Dimension(150, 20));
+        Land.setFont(font);
+        panel.add(Land);
+        line.setPreferredSize(new Dimension(150, 20));
+        panel.add(line);
+
+        add(new JSeparator(SwingConstants.HORIZONTAL));
+        member.setFont(new Font("Arial", Font.ITALIC, 18));
+        member.setPreferredSize(new Dimension(250, 17));
+        wind.add(member);
+        ad.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String Dob = date.getSelectedItem().toString() + "/" + month.getSelectedItem().toString() + "/"
+                        + year.getSelectedItem().toString();
+                model.addRow(
+                        new Object[] {
+                                fn.getText(),
+                                Dob,
+                                AadNo.getText(),
+                                gengrp.getSelection().getActionCommand()
+                        });
+            }
+        });
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fn.setText("");
+                ln.setText("");
+                mn.setText("");
+                mom.setText("");
+                dad.setText("");
+                Blood.setSelectedIndex(0);
+                rela.setSelectedIndex(0);
+                owngrp.clearSelection();
+                qua.setText("");
+                work.setText("");
+                con.setText("");
+                nation.setSelectedIndex(0);
+                AadNo.setText("");
+                gengrp.clearSelection();
+                date.setSelectedIndex(0);
+                month.setSelectedIndex(0);
+                year.setSelectedIndex(0);
+                owngrp.clearSelection();
+                rela.setSelectedIndex(0);
+
+            }
+        });
+        wind.add(clear);
+        wind.add(ad);
+
+        fname.setPreferredSize(new Dimension(155, 15));
+        fname.setFont(font);
+        wind.add(fname);
+        fn.setPreferredSize(new Dimension(140, 18));
+        wind.add(fn);
+
+        mname.setPreferredSize(new Dimension(155, 15));
+        mname.setFont(font);
+        wind.add(mname);
+        mn.setPreferredSize(new Dimension(140, 18));
+        wind.add(mn);
+
+        lname.setPreferredSize(new Dimension(155, 15));
+        lname.setFont(font);
+        wind.add(lname);
+        ln.setPreferredSize(new Dimension(140, 18));
+        wind.add(ln);
+
+        mother.setPreferredSize(new Dimension(155, 15));
+        mother.setFont(font);
+        wind.add(mother);
+        mom.setPreferredSize(new Dimension(140, 18));
+        wind.add(mom);
+
+        father.setPreferredSize(new Dimension(155, 15));
+        father.setFont(font);
+        wind.add(father);
+        dad.setPreferredSize(new Dimension(140, 18));
+        wind.add(dad);
+
+        phone.setPreferredSize(new Dimension(155, 15));
+        phone.setFont(font);
+        wind.add(phone);
+        con.setPreferredSize(new Dimension(140, 18));
+        wind.add(con);
+
+        aadhar.setPreferredSize(new Dimension(155, 15));
+        aadhar.setFont(font);
+        wind.add(aadhar);
+        AadNo.setPreferredSize(new Dimension(140, 18));
+        wind.add(AadNo);
+        panel.add(Box.createRigidArea(new Dimension(400, 5)));
+
+        owner.setFont(font);
+        owner.setPreferredSize(new Dimension(200, 15));
+        wind.add(owner);
+        yes.setPreferredSize(new Dimension(60, 18));
+        yes.setActionCommand("Y");
+        wind.add(yes);
+        no.setPreferredSize(new Dimension(60, 18));
+        no.setActionCommand("N");
+        wind.add(no);
+        owngrp.add(yes);
+        owngrp.add(no);
+
+        Relation.setFont(font);
+        Relation.setPreferredSize(new Dimension(180, 15));
+        wind.add(Relation);
+        rela.setPreferredSize(new Dimension(150, 20));
+        wind.add(rela);
+
+        blood.setFont(font);
+        blood.setPreferredSize(new Dimension(60, 15));
+        wind.add(blood);
+        Blood.setPreferredSize(new Dimension(60, 18));
+        wind.add(Blood);
+
+        DOB.setFont(font);
+        DOB.setPreferredSize(new Dimension(50, 15));
+        wind.add(DOB);
+        date.setPreferredSize(new Dimension(50, 18));
+        wind.add(date);
+        month.setPreferredSize(new Dimension(50, 18));
+        wind.add(month);
+        year.setPreferredSize(new Dimension(60, 18));
+        wind.add(year);
+
+        gender.setFont(font);
+        gender.setPreferredSize(new Dimension(100, 15));
+        wind.add(gender);
+        male.setPreferredSize(new Dimension(55, 18));
+        male.setActionCommand("M");
+        wind.add(male);
+        female.setPreferredSize(new Dimension(70, 18));
+        female.setActionCommand("F");
+        wind.add(female);
+        others.setPreferredSize(new Dimension(65, 18));
+        others.setActionCommand("O");
+        wind.add(others);
         gengrp.add(male);
         gengrp.add(female);
+        gengrp.add(others);
 
+        Edu.setPreferredSize(new Dimension(155, 15));
+        Edu.setFont(font);
+        wind.add(Edu);
+        qua.setPreferredSize(new Dimension(140, 18));
+        wind.add(qua);
+
+        Occ.setPreferredSize(new Dimension(155, 15));
+        Occ.setFont(font);
+        wind.add(Occ);
+        work.setPreferredSize(new Dimension(140, 18));
+        wind.add(work);
+
+        nat.setPreferredSize(new Dimension(155, 15));
+        nat.setFont(font);
+        wind.add(nat);
+        nation.setPreferredSize(new Dimension(140, 20));
+        wind.add(nation);
+
+        panel.add(Box.createRigidArea(new Dimension(250, 5)));
+
+        panel.add(next);
+        Image.add(label);
+        add(Image);
+        Image.setPreferredSize(new Dimension(400, 365));
+        add(panel);
+        panel.setPreferredSize(new Dimension(400, 365));
+
+        add(new JSeparator(SwingConstants.VERTICAL));
+        panel1.add(new JScrollPane(table));
+        panel1.setPreferredSize(new Dimension(400, 365));
+        wind.setPreferredSize(new Dimension(400, 365));
+
+        gbutton.add(Go);
+        gbutton.add(submit);
+        gbutton.setPreferredSize(new Dimension(800, 50));
+
+        submit.addActionListener(this);
+        next.addActionListener(this);
+        Go.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
+        if (source == next) {
+            panel.setVisible(false);
+            Image.setVisible(false);
+            add(wind);
+            add(panel1);
+            add(gbutton);
+            wind.setVisible(true);
+            panel1.setVisible(true);
+            gbutton.setVisible(true);
+        }
+        if (source == Go) {
+            wind.setVisible(false);
+            panel1.setVisible(false);
+            gbutton.setVisible(false);
+            Image.setVisible(true);
+            panel.setVisible(true);
+
+        }
+        if (source == submit) {
+            JOptionPane.showMessageDialog(submit, "Submitted Successfully");
+            fn.setText("");
+            ln.setText("");
+            mn.setText("");
+            mom.setText("");
+            dad.setText("");
+            Blood.setSelectedIndex(0);
+            rela.setSelectedIndex(0);
+            owngrp.clearSelection();
+            qua.setText("");
+            work.setText("");
+            con.setText("");
+            nation.setSelectedIndex(0);
+            AadNo.setText("");
+            gengrp.clearSelection();
+            date.setSelectedIndex(0);
+            month.setSelectedIndex(0);
+            year.setSelectedIndex(0);
+            ID.setText("");
+            TotalMembers.setText("");
+            model.setRowCount(0);
+            sno.setText("");
+            sna.setText("");
+            num.setText("");
+            ci.setText("");
+            st.setText("");
+            pin.setText("");
+            line.setText("");
+            wind.setVisible(false);
+            panel1.setVisible(false);
+            gbutton.setVisible(false);
+            Image.setVisible(true);
+            panel.setVisible(true);
+        }
     }
 }

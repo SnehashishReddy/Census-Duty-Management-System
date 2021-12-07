@@ -75,7 +75,7 @@ public class Login extends JPanel implements ActionListener {
         } else if (source == MButton) {
             Master.goTo("ManagerDashboard");
         } else if (source == nextButton) {
-            Master.goTo("Statstics");
+            Master.goTo("Statistics");
         }
     }
 }
