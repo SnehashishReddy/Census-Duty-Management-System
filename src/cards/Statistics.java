@@ -5,17 +5,14 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Statistics extends JPanel{
+	JPanel panel = new JPanel();
 	private double[] value = {1,2,12,7,0,12,1,4,6,8};
 	private String[] languages = {"Birth \nRate","Death \nRate","Male","Female","Others","","","","",""};
-	JLabel title1 = new JLabel("Census Data Statistics");
 	String title;
 	
 	Statistics(){
-		title1.setFont(new Font("Arial", Font.PLAIN, 30));
-        title1.setSize(300, 30);
-        add(title1);
-        add(Box.createRigidArea(new Dimension(850,200)));
-		 title = "STATS";
+		
+		 title = "Census Data Statistics";
 		  }
 		  public void paintComponent(Graphics graphics) {
 		  super.paintComponent(graphics);
@@ -33,15 +30,15 @@ public class Statistics extends JPanel{
 		  int clientWidth = dim.width;
 		  int clientHeight = dim.height;
 		  int barWidth = clientWidth / value.length;
-		  Font titleFont = new Font("Book Antiqua", Font.BOLD, 15);
+		  Font titleFont = new Font("Arial", Font.BOLD, 33);
 		  FontMetrics titleFontMetrics = graphics.getFontMetrics(titleFont);
-		  Font labelFont = new Font("Book Antiqua", Font.PLAIN, 20);
+		  Font labelFont = new Font("Times New Roman", Font.PLAIN, 17);
 		  FontMetrics labelFontMetrics = graphics.getFontMetrics(labelFont);
 		  int titleWidth = titleFontMetrics.stringWidth(title);
 		  int q = titleFontMetrics.getAscent();
 		  int p = (clientWidth - titleWidth) / 2;
 		  graphics.setFont(titleFont);
-		  //graphics.drawString(title, p, q);
+		  graphics.drawString(title, p, q);
 		  int top = titleFontMetrics.getHeight();
 		  int bottom = labelFontMetrics.getHeight();
 		  if (maxValue == minValue)
