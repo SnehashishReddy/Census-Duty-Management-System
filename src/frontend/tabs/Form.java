@@ -80,7 +80,7 @@ public class Form extends JPanel implements ActionListener {
     JButton submit = new JButton("Submit");
     JLabel houseID = new JLabel("HouseID : ");
     JLabel Address = new JLabel("Address : ");
-    JLabel No_of_Members = new JLabel("Total Number of House Members : ");
+    JLabel No_of_Members = new JLabel("Number of House Members : ");
     JLabel street = new JLabel("Street No. : ");
     JLabel sname = new JLabel("Street Name : ");
     JLabel aptno = new JLabel("Apt No./ Bunglow No. : ");
@@ -93,7 +93,7 @@ public class Form extends JPanel implements ActionListener {
     JLabel lname = new JLabel("Last Name : ");
     JLabel mother = new JLabel("Mother Name : ");
     JLabel father = new JLabel("Father Name : ");
-    JLabel DOB = new JLabel("DOB : ");
+    JLabel DOB = new JLabel("DOB:");
     JLabel aadhar = new JLabel("Aadhar No. : ");
     JLabel gender = new JLabel("Gender : ");
     JLabel Relation = new JLabel("Relation to Owner : ");
@@ -102,9 +102,9 @@ public class Form extends JPanel implements ActionListener {
     JLabel Edu = new JLabel("Qualification : ");
     JLabel Occ = new JLabel("Occupation : ");
     JLabel nat = new JLabel("Nationality : ");
-    JLabel blood = new JLabel("Blood : ");
-    JRadioButton male = new JRadioButton("Male");
-    JRadioButton female = new JRadioButton("Female");
+    JLabel blood = new JLabel("Blood :");
+    JRadioButton male = new JRadioButton("M");
+    JRadioButton female = new JRadioButton("F");
     JRadioButton others = new JRadioButton("Others");
     ButtonGroup gengrp = new ButtonGroup();
     JRadioButton yes = new JRadioButton("Yes");
@@ -140,7 +140,7 @@ public class Form extends JPanel implements ActionListener {
 
     public Form() {
         title.setFont(new Font("Arial", Font.PLAIN, 30));
-        title.setSize(300, 30);
+        title.setSize(100, 15);
         add(title);
         add(Box.createRigidArea(new Dimension(850, 10)));
 
@@ -316,7 +316,7 @@ public class Form extends JPanel implements ActionListener {
         blood.setFont(font);
         blood.setPreferredSize(new Dimension(60, 15));
         wind.add(blood);
-        Blood.setPreferredSize(new Dimension(60, 18));
+        Blood.setPreferredSize(new Dimension(80, 18));
         wind.add(Blood);
 
         DOB.setFont(font);
@@ -332,13 +332,13 @@ public class Form extends JPanel implements ActionListener {
         gender.setFont(font);
         gender.setPreferredSize(new Dimension(100, 15));
         wind.add(gender);
-        male.setPreferredSize(new Dimension(55, 18));
+        male.setPreferredSize(new Dimension(50, 18));
         male.setActionCommand("M");
         wind.add(male);
-        female.setPreferredSize(new Dimension(70, 18));
+        female.setPreferredSize(new Dimension(50, 18));
         female.setActionCommand("F");
         wind.add(female);
-        others.setPreferredSize(new Dimension(65, 18));
+        others.setPreferredSize(new Dimension(80, 18));
         others.setActionCommand("O");
         wind.add(others);
         gengrp.add(male);

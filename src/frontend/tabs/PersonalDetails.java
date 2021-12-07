@@ -176,7 +176,7 @@ public class PersonalDetails extends JPanel {
         tdob = new JTextField(temp.getDob());
         tusername = new JTextField(temp.getUsername());
         tpassword = new JTextField(temp.getPassword());
-        tnumberofforms = new JTextField(temp.getFormsubmitted());
+        tnumberofforms = new JTextField(String.valueOf(temp.getFormsubmitted()));
         tschoolname = new JTextField(temp.getSchoolname());
         tmanager = new JTextField(temp.getManager());
         tareas = new JTextArea(temp.getAreas());
@@ -248,8 +248,8 @@ public class PersonalDetails extends JPanel {
         tmanager.setBounds(600, 80, 200, 20);
         tnumberofforms.setBounds(600, 110, 200, 20);
         tareas.setBounds(600, 140, 200, 80);
-        backButton.setBounds(250, 360, 100, 20);
-        saveButton.setBounds(450, 360, 100, 20);
+        backButton.setBounds(250, 380, 100, 25);
+        saveButton.setBounds(450, 380, 100, 25);
 
         // assign gender
         male.setSelected(temp.getGender() == 'M');

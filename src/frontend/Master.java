@@ -36,7 +36,7 @@ public class Master {
         masterFrame.getContentPane().add(cardHolder);
 
         masterFrame.setTitle("Census Duty Management System");
-        masterFrame.setSize(850, 500);
+        masterFrame.setSize(850, 580);
         masterFrame.setLocationRelativeTo(null);
         masterFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         masterFrame.setVisible(true);

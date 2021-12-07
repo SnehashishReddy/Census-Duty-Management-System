@@ -22,6 +22,8 @@ public class Login extends JPanel implements ActionListener {
     Font font = new Font("Arial", Font.BOLD, 15);
 
     public Login() {
+        add(Box.createRigidArea(new Dimension(850, 50)));
+
         setBackground(Color.white);
         nextButton.setFont(font);
         TButton.setFont(font);

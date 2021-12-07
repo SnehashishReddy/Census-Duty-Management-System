@@ -53,29 +53,29 @@ public class UserManagement extends JPanel {
         JButton btnDelete = new JButton("Delete");
         JButton btnUpdate = new JButton("Update");
 
-        username.setBounds(20, 260, 100, 25);
-        password.setBounds(280, 260, 100, 25);
-        Id.setBounds(530, 260, 100, 25);
-        Fname.setBounds(20, 290, 100, 25);
-        Mname.setBounds(280, 290, 100, 25);
-        Lname.setBounds(530, 290, 100, 25);
-        Manager.setBounds(20, 320, 100, 25);
+        username.setBounds(20, 310, 100, 25);
+        password.setBounds(280, 310, 100, 25);
+        Id.setBounds(530, 310, 100, 25);
+        Fname.setBounds(20, 340, 100, 25);
+        Mname.setBounds(280, 340, 100, 25);
+        Lname.setBounds(530, 340, 100, 25);
+        Manager.setBounds(280, 370, 100, 25);
 
-        textusername.setBounds(120, 260, 125, 20);
-        textpassword.setBounds(380, 260, 125, 20);
-        textId.setBounds(630, 260, 125, 25);
-        textFname.setBounds(120, 290, 125, 25);
-        textMname.setBounds(380, 290, 125, 20);
-        textLname.setBounds(630, 290, 125, 25);
-        textManager.setBounds(120, 320, 125, 20);
+        textusername.setBounds(120, 310, 125, 25);
+        textpassword.setBounds(380, 310, 125, 25);
+        textId.setBounds(630, 310, 125, 25);
+        textFname.setBounds(120, 340, 125, 25);
+        textMname.setBounds(380, 340, 125, 25);
+        textLname.setBounds(630, 340, 125, 25);
+        textManager.setBounds(380, 370, 125, 25);
 
-        btnAdd.setBounds(150, 355, 100, 25);
-        btnUpdate.setBounds(350, 355, 100, 25);
-        btnDelete.setBounds(550, 355, 100, 25);
+        btnAdd.setBounds(150, 425, 100, 25);
+        btnUpdate.setBounds(350, 425, 100, 25);
+        btnDelete.setBounds(550, 425, 100, 25);
 
         // create JScrollPane
         JScrollPane pane = new JScrollPane(table);
-        pane.setBounds(0, 0, 850, 250);
+        pane.setBounds(0, 0, 850, 300);
 
         add(pane);
 
