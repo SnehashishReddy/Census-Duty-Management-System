@@ -15,7 +15,7 @@ public class Login extends JPanel implements ActionListener {
     JLabel passwordLabel = new JLabel("PASSWORD");
     JTextField userTextField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
-    JButton nextButton = new JButton("View Population Statstics");
+    JButton nextButton = new JButton("View Population Statistics");
     JButton TButton = new JButton("Teacher Dashboard Login");
     JButton MButton = new JButton("Manager Dashboard Login");
     JCheckBox showPassword = new JCheckBox(" Show Password");
