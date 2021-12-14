@@ -8,6 +8,7 @@ import javax.swing.event.*;
 import frontend.Master;
 import frontend.tabs.RegPart;
 import frontend.tabs.TeacherManagement;
+import frontend.custom.RoundedBorder;
 
 public class ManagerDashboard extends JPanel {
     public ManagerDashboard() {
@@ -20,6 +21,8 @@ public class ManagerDashboard extends JPanel {
         l1.setPreferredSize(new Dimension(400, 30));
 
         JButton logoutButton = new JButton("Log Out");
+        logoutButton.setBorder(new RoundedBorder(10));
+        logoutButton.setPreferredSize(new Dimension(80, 3));
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -55,17 +55,17 @@ public class TeacherManagement extends JPanel {
         JButton btnUpdate = new JButton("Update");
 
         username.setBounds(20, 310, 100, 25);
-        password.setBounds(280, 310, 100, 25);
-        teacher_id.setBounds(530, 310, 100, 25);
-        name.setBounds(20, 340, 100, 25);
+        teacher_id.setBounds(280, 310, 100, 25);
+        name.setBounds(530, 310, 100, 25);
+        password.setBounds(20, 340, 100, 25);
         school_id.setBounds(280, 340, 100, 25);
         dob.setBounds(530, 340, 100, 25);
         assigned.setBounds(280, 370, 100, 25);
 
         textusername.setBounds(120, 310, 125, 25);
-        textpassword.setBounds(380, 310, 125, 25);
-        textteacherid.setBounds(630, 310, 125, 25);
-        textname.setBounds(120, 340, 125, 25);
+        textteacherid.setBounds(380, 310, 125, 25);
+        textname.setBounds(630, 310, 125, 25);
+        textpassword.setBounds(120, 340, 125, 25);
         textschoolid.setBounds(380, 340, 125, 25);
         textdob.setBounds(630, 340, 125, 25);
         textassigned.setBounds(380, 370, 125, 25);

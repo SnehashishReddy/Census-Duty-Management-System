@@ -9,6 +9,7 @@ import frontend.Master;
 import frontend.tabs.Form;
 import frontend.tabs.PersonalDetails;
 import frontend.tabs.ViewForms;
+import frontend.custom.RoundedBorder;
 
 public class TeacherDashboard extends JPanel {
     public TeacherDashboard() {
@@ -21,6 +22,8 @@ public class TeacherDashboard extends JPanel {
         l1.setPreferredSize(new Dimension(400, 30));
 
         JButton logoutButton = new JButton("Log Out");
+        logoutButton.setBorder(new RoundedBorder(10));
+        logoutButton.setPreferredSize(new Dimension(80, 3));
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
