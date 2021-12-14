@@ -320,7 +320,7 @@ public class Form extends JPanel implements ActionListener {
         // wind.add(Blood);
 
         DOB.setFont(font);
-        DOB.setPreferredSize(new Dimension(50, 15));
+        DOB.setPreferredSize(new Dimension(80, 15));
         wind.add(DOB);
         date.setPreferredSize(new Dimension(50, 18));
         wind.add(date);
@@ -330,7 +330,7 @@ public class Form extends JPanel implements ActionListener {
         wind.add(year);
 
         gender.setFont(font);
-        gender.setPreferredSize(new Dimension(100, 15));
+        gender.setPreferredSize(new Dimension(150, 15));
         wind.add(gender);
         male.setPreferredSize(new Dimension(50, 18));
         male.setActionCommand("M");
