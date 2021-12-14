@@ -2,10 +2,15 @@ package frontend.cards;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Objects;
+
 import javax.swing.*;
 import javax.swing.event.*;
 
 import frontend.Master;
+import backend.PostgreSQLAccess;
 
 public class Login extends JPanel implements ActionListener {
     JPanel panel = new JPanel();
@@ -22,6 +27,7 @@ public class Login extends JPanel implements ActionListener {
     Font font = new Font("Arial", Font.BOLD, 15);
 
     public Login() {
+
         add(Box.createRigidArea(new Dimension(850, 50)));
 
         setBackground(Color.white);
@@ -74,7 +80,30 @@ public class Login extends JPanel implements ActionListener {
             passwordField.setEchoChar('\u25cf');
         }
         if (source == TButton) {
-            Master.goTo("TeacherDashboard");
+            String givenUsername = userTextField.getText();
+            String givenPassword = passwordField.getText();
+            if ("".equals(givenUsername) || "".equals(givenPassword)) {
+                JOptionPane.showMessageDialog(panel, "Enter both a Username/Password");
+            } else {
+                String query = "select password from Authentication where username=" + "\'" + givenUsername + "\';";
+                ResultSet rs = PostgreSQLAccess.fetch(query);
+                try {
+                    if (rs.next() != false) {
+                        System.out.println(rs.getString(1));
+                        if (!Objects.equals(rs.getString(1), givenPassword)) {
+                            JOptionPane.showMessageDialog(panel, "Wrong Username/Password");
+                        } else {
+                            Master.goTo("TeacherDashboard");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "Wrong Username/Password");
+                    }
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    // e1.printStackTrace();
+                    JOptionPane.showMessageDialog(panel, "Some Error was encountered");
+                }
+            }
         } else if (source == MButton) {
             Master.goTo("ManagerDashboard");
         } else if (source == nextButton) {

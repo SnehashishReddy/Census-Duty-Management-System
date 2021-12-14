@@ -12,12 +12,14 @@ import frontend.cards.ManagerDashboard;
 import frontend.cards.Statistics;
 import frontend.cards.TeacherDashboard;
 
+import backend.*;
+
 public class Master {
     static CardLayout cardLayout = new CardLayout();
 
     static JPanel cardHolder = new JPanel(cardLayout);
 
-    static JFrame masterFrame = new JFrame();
+    public static JFrame masterFrame = new JFrame();
 
     public static void goTo(String name) {
         cardLayout.show(cardHolder, name);
