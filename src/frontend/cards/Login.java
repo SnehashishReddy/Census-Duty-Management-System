@@ -39,6 +39,7 @@ public class Login extends JPanel implements ActionListener {
         userTextField.setPreferredSize(new Dimension(130, 20));
         passwordField.setPreferredSize(new Dimension(130, 20));
         showPassword.setPreferredSize(new Dimension(150, 30));
+        passwordField.setEchoChar('\u25cf');
 
         userLabel.setFont(font);
         passwordLabel.setFont(font);
@@ -70,7 +71,7 @@ public class Login extends JPanel implements ActionListener {
         if (showPassword.isSelected()) {
             passwordField.setEchoChar((char) 0);
         } else {
-            passwordField.setEchoChar('*');
+            passwordField.setEchoChar('\u25cf');
         }
         if (source == TButton) {
             Master.goTo("TeacherDashboard");

@@ -7,21 +7,22 @@ import javax.swing.event.*;
 
 public class Statistics extends JPanel implements ActionListener {
     JPanel panel = new JPanel(new BorderLayout());
+    JButton view = new JButton("View Details");
     JButton Go = new JButton("Go Back");
     private double[] value = { 1, 2, 12, 7, 0, 12, 1, 4, 6, 8 };
     private String[] languages = { "Birth \nRate", "Death \nRate", "Male", "Female", "Others", "Employed", "Unemployed",
             "Educated", "Uneducated", "Indian", "Others" };
     String title;
-    JLabel title1 = new JLabel("Census Statistics View");
+    JLabel title1 = new JLabel("                     Census Statistics View");
 
     public Statistics() {
-
-        // add(Box.createRigidArea(new Dimension(25, 25)));
         title1.setFont(new Font("Arial", Font.PLAIN, 32));
-        title1.setSize(700, 30);
-        panel.add(title1, BorderLayout.NORTH);
-        panel.add(Go, BorderLayout.CENTER);
+        title1.setSize(400, 30);
+        panel.add(Go, BorderLayout.WEST);
+        panel.add(title1, BorderLayout.CENTER);
+        panel.add(view, BorderLayout.EAST);
         add(panel);
+        panel.setPreferredSize(new Dimension(850, 30));
         title = "                       ";
         Go.addActionListener(this);
     }
@@ -38,7 +39,7 @@ public class Statistics extends JPanel implements ActionListener {
             // if (maxValue < value[i])
             // maxValue = value[i];
         }
-        Dimension dim = new Dimension(850, 550);
+        Dimension dim = new Dimension(850, 545);
         int clientWidth = dim.width;
         int clientHeight = dim.height;
         int barWidth = clientWidth / value.length;
