@@ -21,8 +21,7 @@ public class Login extends JPanel implements ActionListener {
     JTextField userTextField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JButton nextButton = new JButton("View Population Statistics");
-    JButton TButton = new JButton("Teacher Dashboard Login");
-    JButton MButton = new JButton("Manager Dashboard Login");
+    JButton LoginButton = new JButton("Login to Dashboard");
     JCheckBox showPassword = new JCheckBox(" Show Password");
     Font font = new Font("Arial", Font.BOLD, 15);
 
@@ -32,8 +31,7 @@ public class Login extends JPanel implements ActionListener {
 
         setBackground(Color.white);
         nextButton.setFont(font);
-        TButton.setFont(font);
-        MButton.setFont(font);
+        LoginButton.setFont(font);
         userLabel.setBounds(50, 150, 100, 30);
         passwordLabel.setBounds(50, 220, 100, 30);
         userTextField.setBounds(150, 150, 150, 30);
@@ -64,12 +62,10 @@ public class Login extends JPanel implements ActionListener {
         add(panel, BorderLayout.CENTER);
         add(Box.createRigidArea(new Dimension(800, 1)));
         add(nextButton);
-        add(TButton);
-        add(MButton);
+        add(LoginButton);
         showPassword.addActionListener(this);
         nextButton.addActionListener(this);
-        TButton.addActionListener(this);
-        MButton.addActionListener(this);
+        LoginButton.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -79,7 +75,7 @@ public class Login extends JPanel implements ActionListener {
         } else {
             passwordField.setEchoChar('\u25cf');
         }
-        if (source == TButton) {
+        if (source == LoginButton) {
             String givenUsername = userTextField.getText();
             String givenPassword = passwordField.getText();
             if ("".equals(givenUsername) || "".equals(givenPassword)) {
@@ -93,7 +89,11 @@ public class Login extends JPanel implements ActionListener {
                         if (!Objects.equals(rs.getString(1), givenPassword)) {
                             JOptionPane.showMessageDialog(panel, "Wrong Username/Password");
                         } else {
-                            Master.goTo("TeacherDashboard");
+                            if (givenUsername.startsWith("CDMSMA")) {
+                                Master.goTo("ManagerDashboard");
+                            } else {
+                                Master.goTo("TeacherDashboard");
+                            }
                         }
                     } else {
                         JOptionPane.showMessageDialog(panel, "Wrong Username/Password");
@@ -104,8 +104,6 @@ public class Login extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(panel, "Some Error was encountered");
                 }
             }
-        } else if (source == MButton) {
-            Master.goTo("ManagerDashboard");
         } else if (source == nextButton) {
             Master.goTo("Statistics");
         }
