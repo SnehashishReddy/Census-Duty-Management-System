@@ -7,7 +7,7 @@ import javax.swing.event.*;
 
 import frontend.Master;
 import frontend.tabs.RegPart;
-import frontend.tabs.UserManagement;
+import frontend.tabs.TeacherManagement;
 
 public class ManagerDashboard extends JPanel {
     public ManagerDashboard() {
@@ -15,7 +15,7 @@ public class ManagerDashboard extends JPanel {
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
-        JLabel l1 = new JLabel("Manager Dashboard ");
+        JLabel l1 = new JLabel("     Manager Dashboard ");
         topPanel.add(l1, BorderLayout.WEST);
         l1.setPreferredSize(new Dimension(400, 30));
 
@@ -36,10 +36,10 @@ public class ManagerDashboard extends JPanel {
         JTabbedPane tp = new JTabbedPane();
         tp.setBounds(0, 0, 850, 450);
 
-        UserManagement usermanagement = new UserManagement();
+        TeacherManagement teachermanagement = new TeacherManagement();
         RegPart regpart = new RegPart();
 
-        tp.addTab("User Management", usermanagement);
+        tp.addTab("Teacher Management", teachermanagement);
         tp.addTab("Local Registry Partition", regpart);
 
         add(tp);

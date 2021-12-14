@@ -78,16 +78,16 @@ public class Form extends JPanel implements ActionListener {
     JButton ad = new JButton("Add");
     JButton clear = new JButton("Clear");
     JButton submit = new JButton("Submit");
-    JLabel houseID = new JLabel("HouseID : ");
+    // JLabel houseID = new JLabel("HouseID : ");
     JLabel Address = new JLabel("Address : ");
     JLabel No_of_Members = new JLabel("Number of House Members : ");
     JLabel street = new JLabel("Street No. : ");
     JLabel sname = new JLabel("Street Name : ");
     JLabel aptno = new JLabel("Apt No./ Bunglow No. : ");
-    JLabel city = new JLabel("City : ");
-    JLabel state = new JLabel("State : ");
+    JLabel city = new JLabel("District ID : ");
+    JLabel state = new JLabel("State ID: ");
     JLabel zip = new JLabel("Pincode : ");
-    JLabel Land = new JLabel("LandLine No. : ");
+    // JLabel Land = new JLabel("LandLine No. : ");
     JLabel fname = new JLabel("First Name : ");
     JLabel mname = new JLabel("Middle Name : ");
     JLabel lname = new JLabel("Last Name : ");
@@ -96,13 +96,13 @@ public class Form extends JPanel implements ActionListener {
     JLabel DOB = new JLabel("DOB:");
     JLabel aadhar = new JLabel("Aadhar No. : ");
     JLabel gender = new JLabel("Gender : ");
-    JLabel Relation = new JLabel("Relation to Owner : ");
+    JLabel Relation = new JLabel("Relation to Head : ");
     JLabel owner = new JLabel("House Owner : ");
     JLabel phone = new JLabel("Contact No. : ");
     JLabel Edu = new JLabel("Qualification : ");
     JLabel Occ = new JLabel("Occupation : ");
     JLabel nat = new JLabel("Nationality : ");
-    JLabel blood = new JLabel("Blood :");
+    // JLabel blood = new JLabel("Blood :");
     JRadioButton male = new JRadioButton("M");
     JRadioButton female = new JRadioButton("F");
     JRadioButton others = new JRadioButton("Others");
@@ -110,7 +110,7 @@ public class Form extends JPanel implements ActionListener {
     JRadioButton yes = new JRadioButton("Yes");
     JRadioButton no = new JRadioButton("No");
     ButtonGroup owngrp = new ButtonGroup();
-    JTextField ID = new JTextField();
+    // JTextField ID = new JTextField();
     JTextField TotalMembers = new JTextField();
     JTextField AadNo = new JTextField();
     JTextField fn = new JTextField();
@@ -127,12 +127,12 @@ public class Form extends JPanel implements ActionListener {
     JTextField ci = new JTextField();
     JTextField st = new JTextField();
     JTextField pin = new JTextField();
-    JTextField line = new JTextField();
+    // JTextField line = new JTextField();
     JComboBox date = new JComboBox(dates);
     JComboBox month = new JComboBox(months);
     JComboBox year = new JComboBox(years);
     JComboBox rela = new JComboBox(rel);
-    JComboBox Blood = new JComboBox(bgrp);
+    // JComboBox Blood = new JComboBox(bgrp);
     JComboBox nation = new JComboBox(nati);
     DefaultTableModel model = new DefaultTableModel(column, 0);
     JTable table = new JTable(model);
@@ -144,11 +144,11 @@ public class Form extends JPanel implements ActionListener {
         add(title);
         add(Box.createRigidArea(new Dimension(850, 10)));
 
-        houseID.setFont(font);
-        houseID.setPreferredSize(new Dimension(150, 20));
-        panel.add(houseID);
-        ID.setPreferredSize(new Dimension(150, 20));
-        panel.add(ID);
+        // houseID.setFont(font);
+        // houseID.setPreferredSize(new Dimension(150, 20));
+        // panel.add(houseID);
+        // ID.setPreferredSize(new Dimension(150, 20));
+        // panel.add(ID);
 
         No_of_Members.setPreferredSize(new Dimension(250, 20));
         No_of_Members.setFont(font);
@@ -200,11 +200,11 @@ public class Form extends JPanel implements ActionListener {
         pin.setPreferredSize(new Dimension(150, 20));
         panel.add(pin);
 
-        Land.setPreferredSize(new Dimension(150, 20));
-        Land.setFont(font);
-        panel.add(Land);
-        line.setPreferredSize(new Dimension(150, 20));
-        panel.add(line);
+        // Land.setPreferredSize(new Dimension(150, 20));
+        // Land.setFont(font);
+        // panel.add(Land);
+        // line.setPreferredSize(new Dimension(150, 20));
+        // panel.add(line);
 
         add(new JSeparator(SwingConstants.HORIZONTAL));
         member.setFont(new Font("Arial", Font.ITALIC, 18));
@@ -232,7 +232,7 @@ public class Form extends JPanel implements ActionListener {
                 mn.setText("");
                 mom.setText("");
                 dad.setText("");
-                Blood.setSelectedIndex(0);
+                // Blood.setSelectedIndex(0);
                 rela.setSelectedIndex(0);
                 owngrp.clearSelection();
                 qua.setText("");
@@ -313,11 +313,11 @@ public class Form extends JPanel implements ActionListener {
         rela.setPreferredSize(new Dimension(150, 20));
         wind.add(rela);
 
-        blood.setFont(font);
-        blood.setPreferredSize(new Dimension(60, 15));
-        wind.add(blood);
-        Blood.setPreferredSize(new Dimension(80, 18));
-        wind.add(Blood);
+        // blood.setFont(font);
+        // blood.setPreferredSize(new Dimension(60, 15));
+        // wind.add(blood);
+        // Blood.setPreferredSize(new Dimension(80, 18));
+        // wind.add(Blood);
 
         DOB.setFont(font);
         DOB.setPreferredSize(new Dimension(50, 15));
@@ -413,7 +413,7 @@ public class Form extends JPanel implements ActionListener {
             mn.setText("");
             mom.setText("");
             dad.setText("");
-            Blood.setSelectedIndex(0);
+            // Blood.setSelectedIndex(0);
             rela.setSelectedIndex(0);
             owngrp.clearSelection();
             qua.setText("");
@@ -425,7 +425,7 @@ public class Form extends JPanel implements ActionListener {
             date.setSelectedIndex(0);
             month.setSelectedIndex(0);
             year.setSelectedIndex(0);
-            ID.setText("");
+            // ID.setText("");
             TotalMembers.setText("");
             model.setRowCount(0);
             sno.setText("");
@@ -434,7 +434,7 @@ public class Form extends JPanel implements ActionListener {
             ci.setText("");
             st.setText("");
             pin.setText("");
-            line.setText("");
+            // line.setText("");
             wind.setVisible(false);
             panel1.setVisible(false);
             gbutton.setVisible(false);

@@ -5,9 +5,9 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class UserManagement extends JPanel {
+public class TeacherManagement extends JPanel {
 
-    public UserManagement() {
+    public TeacherManagement() {
 
         /**
          * This method helps to generate Table with buttons like Add, Update, Delete
@@ -17,7 +17,8 @@ public class UserManagement extends JPanel {
         final JTable table = new JTable();
 
         // create a table model and set a Column Identifiers to this model
-        Object[] columns = { "Username", "Password", "ID", "First Name", "Middle name", "Last Name", "Manager" };
+        Object[] columns = { "Username", "Password", "Teacher ID", "School ID", "Full Name", "Date of Birth",
+                "Assigned Area ID" };
         final DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columns);
 
@@ -33,20 +34,20 @@ public class UserManagement extends JPanel {
 
         final JLabel username = new JLabel("Username");
         final JLabel password = new JLabel("Password");
-        final JLabel Id = new JLabel("ID");
-        final JLabel Fname = new JLabel("First Name");
-        final JLabel Mname = new JLabel("Middle Name");
-        final JLabel Lname = new JLabel("Last Name");
-        final JLabel Manager = new JLabel("Manager");
+        final JLabel teacher_id = new JLabel("Teacher ID");
+        final JLabel school_id = new JLabel("School ID");
+        final JLabel name = new JLabel("Full Name");
+        final JLabel dob = new JLabel("Date of Birth");
+        final JLabel assigned = new JLabel("Area ID");
 
         // create JTextFields to hold the value
         final JTextField textusername = new JTextField();
         final JTextField textpassword = new JTextField();
-        final JTextField textId = new JTextField();
-        final JTextField textFname = new JTextField();
-        final JTextField textMname = new JTextField();
-        final JTextField textLname = new JTextField();
-        final JTextField textManager = new JTextField();
+        final JTextField textteacherid = new JTextField();
+        final JTextField textschoolid = new JTextField();
+        final JTextField textname = new JTextField();
+        final JTextField textdob = new JTextField();
+        final JTextField textassigned = new JTextField();
 
         // create JButtons to add the action
         JButton btnAdd = new JButton("Add");
@@ -55,19 +56,19 @@ public class UserManagement extends JPanel {
 
         username.setBounds(20, 310, 100, 25);
         password.setBounds(280, 310, 100, 25);
-        Id.setBounds(530, 310, 100, 25);
-        Fname.setBounds(20, 340, 100, 25);
-        Mname.setBounds(280, 340, 100, 25);
-        Lname.setBounds(530, 340, 100, 25);
-        Manager.setBounds(280, 370, 100, 25);
+        teacher_id.setBounds(530, 310, 100, 25);
+        name.setBounds(20, 340, 100, 25);
+        school_id.setBounds(280, 340, 100, 25);
+        dob.setBounds(530, 340, 100, 25);
+        assigned.setBounds(280, 370, 100, 25);
 
         textusername.setBounds(120, 310, 125, 25);
         textpassword.setBounds(380, 310, 125, 25);
-        textId.setBounds(630, 310, 125, 25);
-        textFname.setBounds(120, 340, 125, 25);
-        textMname.setBounds(380, 340, 125, 25);
-        textLname.setBounds(630, 340, 125, 25);
-        textManager.setBounds(380, 370, 125, 25);
+        textteacherid.setBounds(630, 310, 125, 25);
+        textname.setBounds(120, 340, 125, 25);
+        textschoolid.setBounds(380, 340, 125, 25);
+        textdob.setBounds(630, 340, 125, 25);
+        textassigned.setBounds(380, 370, 125, 25);
 
         btnAdd.setBounds(150, 425, 100, 25);
         btnUpdate.setBounds(350, 425, 100, 25);
@@ -75,7 +76,7 @@ public class UserManagement extends JPanel {
 
         // create JScrollPane
         JScrollPane pane = new JScrollPane(table);
-        pane.setBounds(0, 0, 850, 300);
+        pane.setBounds(0, 0, 837, 300);
 
         add(pane);
 
@@ -83,20 +84,20 @@ public class UserManagement extends JPanel {
         // add JLabels to the jframe
         add(username);
         add(password);
-        add(Id);
-        add(Fname);
-        add(Mname);
-        add(Lname);
-        add(Manager);
+        add(teacher_id);
+        add(school_id);
+        add(name);
+        add(dob);
+        add(assigned);
 
         // add JTextFields to the jframe
         add(textusername);
         add(textpassword);
-        add(textId);
-        add(textFname);
-        add(textLname);
-        add(textMname);
-        add(textManager);
+        add(textteacherid);
+        add(textschoolid);
+        add(textname);
+        add(textdob);
+        add(textassigned);
         // add JButtons to the jframe
         add(btnAdd);
         add(btnDelete);
@@ -113,11 +114,11 @@ public class UserManagement extends JPanel {
 
                 row[0] = textusername.getText();
                 row[1] = textpassword.getText();
-                row[2] = textId.getText();
-                row[3] = textFname.getText();
-                row[4] = textMname.getText();
-                row[5] = textLname.getText();
-                row[6] = textManager.getText();
+                row[2] = textteacherid.getText();
+                row[3] = textschoolid.getText();
+                row[4] = textname.getText();
+                row[5] = textdob.getText();
+                row[6] = textassigned.getText();
 
                 // add row to the model
                 model.addRow(row);
@@ -152,11 +153,11 @@ public class UserManagement extends JPanel {
                 int i = table.getSelectedRow();
                 textusername.setText(model.getValueAt(i, 0).toString());
                 textpassword.setText(model.getValueAt(i, 1).toString());
-                textId.setText(model.getValueAt(i, 2).toString());
-                textFname.setText(model.getValueAt(i, 3).toString());
-                textMname.setText(model.getValueAt(i, 4).toString());
-                textLname.setText(model.getValueAt(i, 5).toString());
-                textManager.setText(model.getValueAt(i, 6).toString());
+                textteacherid.setText(model.getValueAt(i, 2).toString());
+                textschoolid.setText(model.getValueAt(i, 3).toString());
+                textname.setText(model.getValueAt(i, 4).toString());
+                textdob.setText(model.getValueAt(i, 5).toString());
+                textassigned.setText(model.getValueAt(i, 6).toString());
             }
         });
 
@@ -172,11 +173,11 @@ public class UserManagement extends JPanel {
                 if (i >= 0) {
                     model.setValueAt(textusername.getText(), i, 0);
                     model.setValueAt(textpassword.getText(), i, 1);
-                    model.setValueAt(textId.getText(), i, 2);
-                    model.setValueAt(textFname.getText(), i, 3);
-                    model.setValueAt(textMname.getText(), i, 4);
-                    model.setValueAt(textLname.getText(), i, 5);
-                    model.setValueAt(textManager.getText(), i, 6);
+                    model.setValueAt(textteacherid.getText(), i, 2);
+                    model.setValueAt(textschoolid.getText(), i, 3);
+                    model.setValueAt(textname.getText(), i, 4);
+                    model.setValueAt(textdob.getText(), i, 5);
+                    model.setValueAt(textassigned.getText(), i, 6);
                 } else {
                     System.out.println("Update Error");
                 }
