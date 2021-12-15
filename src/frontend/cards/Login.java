@@ -93,6 +93,7 @@ public class Login extends JPanel implements ActionListener {
                         } else {
                             if (givenUsername.startsWith("CDMSMA")) {
                                 Master.goTo("ManagerDashboard");
+                                ManagerDashboard.onLogin();
                             } else {
                                 Master.goTo("TeacherDashboard");
                                 TeacherDashboard.assigning();

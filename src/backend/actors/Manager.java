@@ -1,10 +1,10 @@
 package backend.actors;
 
 public abstract class Manager extends User {
-    private int employeeID;
-    private int regionID;
-    private int hierarchy;
-    private int[] region;
+    protected int employeeID;
+    protected int regionID;
+    protected int hierarchy;
+    protected int[] region;
 
     /**
      * @return int return the employeeID

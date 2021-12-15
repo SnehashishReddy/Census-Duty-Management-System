@@ -2,8 +2,15 @@ package frontend.tabs;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.zip.ZipError;
+
 import javax.swing.*;
 import javax.swing.table.*;
+
+import backend.PostgreSQLAccess;
+import frontend.cards.Login;
 
 public class TeacherManagement extends JPanel {
 
@@ -121,6 +128,33 @@ public class TeacherManagement extends JPanel {
                 row[6] = textassigned.getText();
 
                 // add row to the model
+                String sql1 = "insert into user_ (username, name, date_of_birth, usertype, designation) values (\'"
+                        + row[0] + "\',\'" + row[4] + "\',TO_DATE(\'" + row[5] + "\','DD/MM/YYYY') "
+                        + ", 'Teacher', 'Teacher');";
+                System.out.println(sql1);
+
+                String sql2 = "insert into Authentication values (\'" + row[0] + "\', \'" + row[1] + "\');";
+                System.out.println(sql2);
+
+                String managerID = "";
+                ResultSet rsmid = PostgreSQLAccess
+                        .fetch("select employee_id from Manager where username =\'" + Login.givenUsername + "\';");
+                try {
+                    if (rsmid.next()) {
+                        managerID = rsmid.getString(1);
+                    }
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                String sql3 = "insert into Teacher (username,teacher_id,school_id,assigned_area_id,district_id,manager_id) values ("
+                        + "\'" + row[0] + "\'," + "\'" + row[2] + "\'," + "\'" + row[3] + "\'," + "\'" + row[6] + "\',"
+                        + "\'" + RegPart.districtID + "\'," + "\'" + managerID + "\');";
+                System.out.println(sql3);
+                PostgreSQLAccess.executeUpdate(sql1);
+                PostgreSQLAccess.executeUpdate(sql2);
+                PostgreSQLAccess.executeUpdate(sql3);
+
                 model.addRow(row);
             }
         });
@@ -135,6 +169,15 @@ public class TeacherManagement extends JPanel {
                 int i = table.getSelectedRow();
                 if (i >= 0) {
                     // remove a row from jtable
+                    String tempUsername = model.getValueAt(i, 0).toString();
+                    String dQuery1 = "delete from Authentication where username=" + "\'" + tempUsername
+                            + "\';";
+                    String dQuery2 = "delete from Teacher where username=" + "\'" + tempUsername + "\';";
+                    String dQuery3 = "delete from user_ where username=" + "\'" + tempUsername + "\';";
+
+                    PostgreSQLAccess.executeUpdate(dQuery1);
+                    PostgreSQLAccess.executeUpdate(dQuery2);
+                    PostgreSQLAccess.executeUpdate(dQuery3);
                     model.removeRow(i);
                 } else {
                     System.out
