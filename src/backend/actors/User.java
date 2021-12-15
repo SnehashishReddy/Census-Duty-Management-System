@@ -3,17 +3,17 @@ package backend.actors;
 import java.sql.Date;
 
 public abstract class User {
-    private String username;
-    private String password;
-    private String name;
-    private Date dateOfBirth;
-    private Character gender;
-    private String address;
-    private String phoneNo;
-    private String usertype;
-    private String designation;
-    private String email;
-    private String managerID;
+    protected String username;
+    protected String password;
+    protected String name;
+    protected Date dateOfBirth;
+    protected Character gender;
+    protected String address;
+    protected String phoneNo;
+    protected String usertype;
+    protected String designation;
+    protected String email;
+    protected String managerID;
 
     /**
      * @return String return the username

@@ -1,7 +1,7 @@
 package backend.actors;
 
 public class Commissioner extends Manager {
-    private boolean isPublished;
+    protected boolean isPublished;
 
     /**
      * @return boolean return the isPublished

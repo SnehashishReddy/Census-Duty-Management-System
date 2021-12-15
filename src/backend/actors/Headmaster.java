@@ -1,8 +1,8 @@
 package backend.actors;
 
 public class Headmaster extends Manager {
-    private String schoolName;
-    private int SchoolID;
+    protected String schoolName;
+    protected int SchoolID;
 
     /**
      * @return String return the schoolName

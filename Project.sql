@@ -197,11 +197,10 @@ insert into Authentication values
 ('CDMSTE0002','1p9c492r0b8'),
 ('CDMSTE0003','b92c3hr8r'),
 ('CDMSTE0004','3r8gc2r9p24'),
-('CDMSTE0005','2h9rv9v9p4bw'),
+('CDMSTE0005','teach'),
 ('CDMSMA0001','-81392vhrp'),
 ('CDMSMA0002','08gp9hqer'),
-('CDMSMA0003','2rvoiewew4wv'),
-('ADMIN','admin');
+('CDMSMA0003','manage');
 
 insert into Manager values
 ('CDMSTE0001','TE23011',1,'MA23011'),
@@ -336,6 +335,8 @@ select * from Commissioner ;
 select * from state_id;
 select * from Census ;
 select * from statistics ;
+
+select form_id, teacher_id, district_id, firstname, phone_no, aadhaar_no, gender from Census;
 
 
 drop table statistics;

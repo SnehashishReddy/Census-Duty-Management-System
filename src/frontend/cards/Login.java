@@ -24,6 +24,7 @@ public class Login extends JPanel implements ActionListener {
     JButton LoginButton = new JButton("Login to Dashboard");
     JCheckBox showPassword = new JCheckBox(" Show Password");
     Font font = new Font("Arial", Font.BOLD, 15);
+    public static String givenUsername = "";
 
     public Login() {
 
@@ -76,7 +77,7 @@ public class Login extends JPanel implements ActionListener {
             passwordField.setEchoChar('\u25cf');
         }
         if (source == LoginButton) {
-            String givenUsername = userTextField.getText();
+            givenUsername = userTextField.getText();
             String givenPassword = passwordField.getText();
             if ("".equals(givenUsername) || "".equals(givenPassword)) {
                 JOptionPane.showMessageDialog(panel, "Enter both a Username/Password");
@@ -91,6 +92,7 @@ public class Login extends JPanel implements ActionListener {
                         } else {
                             if (givenUsername.startsWith("CDMSMA")) {
                                 Master.goTo("ManagerDashboard");
+                                ManagerDashboard.onLogin();
                             } else {
                                 Master.goTo("TeacherDashboard");
                             }

@@ -1,10 +1,10 @@
 package backend.actors;
 
 public class Teacher extends User {
-    private int areaCode;
-    private String schoolName;
-    private int schoolID;
-    private int teacherID;
+    protected int areaCode;
+    protected String schoolName;
+    protected int schoolID;
+    protected int teacherID;
 
     /**
      * @return int return the areaCode

@@ -1,7 +1,7 @@
 package backend.actors;
 
 public class Director extends Manager {
-    private String stateName;
+    protected String stateName;
 
     /**
      * @return String return the stateName

@@ -3,7 +3,7 @@ package backend.actors;
 import java.util.ArrayList;
 
 public class Form {
-    private ArrayList<String> schema;
+    protected ArrayList<String> schema;
 
     /**
      * @return ArrayList<String> return the schema
