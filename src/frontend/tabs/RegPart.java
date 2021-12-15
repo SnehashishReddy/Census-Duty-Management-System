@@ -16,6 +16,7 @@ import javax.swing.event.*;
 public class RegPart extends JPanel {
     public static String query = "";
     public static JScrollPane sp = new JScrollPane();
+    public static String districtID;
 
     public RegPart() {
         setLayout(new BorderLayout());
@@ -38,7 +39,7 @@ public class RegPart extends JPanel {
         if (ManagerDashboard.managingActor.getDesignation().equals("Head Master")) {
             ResultSet rst = PostgreSQLAccess
                     .fetch("select district_id from headmaster where username=\'" + Login.givenUsername + "\';");
-            String districtID = "";
+            districtID = "";
             try {
                 while (rst.next()) {
                     districtID = rst.getString(1);
