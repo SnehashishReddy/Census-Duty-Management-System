@@ -2,158 +2,93 @@ package frontend.tabs;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.*;
 import javax.swing.event.*;
 
+import backend.PostgreSQLAccess;
 import frontend.Master;
+import frontend.cards.TeacherDashboard;
+
 
 public class PersonalDetails extends JPanel {
-    public class temp {
-        String name;
-        String id;
-        String mobile;
-        String email;
-        char gender;
-        String dob;
-        String address;
-        String username;
-        String password;
-        String manager;
-        String schoolname;
-        int formsubmitted;
-        String areas;
 
-        public temp(String username, String password, String name, String id, String mobile, String email, char gender,
-                String dob,
-                String address, String manager, String schoolname, int formsubmitted, String areas) {
-            super();
-            this.name = name;
-            this.id = id;
-            this.mobile = mobile;
-            this.email = email;
-            this.gender = gender;
-            this.dob = dob;
-            this.address = address;
-            this.username = username;
-            this.password = password;
-            this.manager = manager;
-            this.schoolname = schoolname;
-            this.formsubmitted = formsubmitted;
-            this.areas = areas;
+    public static void detail(){
+         String query1 = "select count(*) from Census where teacher_id =" + "\'" + TeacherDashboard.teacher.getTeacherID()+ "\';";
+        ResultSet rs1 = PostgreSQLAccess.fetch(query1);
+        try {
+            while(rs1.next()) {
+                 tnumberofforms.setText(rs1.getString(1));
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
         }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setMobile(String mobile) {
-            this.mobile = mobile;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public void setAreas(String areas) {
-            this.areas = areas;
-        }
-
-        public String getMobile() {
-            return mobile;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public char getGender() {
-            return gender;
-        }
-
-        public String getDob() {
-            return dob;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public String getManager() {
-            return manager;
-        }
-
-        public String getSchoolname() {
-            return schoolname;
-        }
-
-        public int getFormsubmitted() {
-            return formsubmitted;
-        }
-
-        public String getAreas() {
-            return areas;
+        String query2 = "select district_id,manager_id from teacher where teacher_id =" + "\'" + TeacherDashboard.teacher.getTeacherID()+ "\';";
+        ResultSet rs2 = PostgreSQLAccess.fetch(query2);
+        try {
+            while(rs2.next()) {
+                 tdistrictid.setText(rs2.getString("district_id"));
+                 tmanager.setText(rs2.getString("manager_id"));
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
         }
 
     }
-
+    public static void setvalue(){
+        male.setSelected(TeacherDashboard.teacher.getGender() == 'M');
+        female.setSelected(TeacherDashboard.teacher.getGender() == 'F');
+        tusername.setText(TeacherDashboard.teacher.getUsername());
+        tname.setText(TeacherDashboard.teacher.getName());
+        tid.setText(TeacherDashboard.teacher.getTeacherID());
+        tmobile.setText(TeacherDashboard.teacher.getPhoneNo());
+        tdob.setText(String.valueOf(TeacherDashboard.teacher.getDateOfBirth()));
+        tpassword.setText(TeacherDashboard.teacher.getPassword());
+        tschoolname.setText(TeacherDashboard.teacher.getSchoolName());
+        tschoolid.setText(TeacherDashboard.teacher.getSchoolID());
+        tarea.setText(String.valueOf(TeacherDashboard.teacher.getAreaCode()));
+        taddress.setText(TeacherDashboard.teacher.getAddress());
+        temail.setText(TeacherDashboard.teacher.getEmail());
+        detail();
+    }
     private JLabel username;
-    private JTextField tusername;
+    private static JTextField tusername;
     private JLabel password;
-    private JTextField tpassword;
+    private static JTextField tpassword;
     private JLabel name;
-    private JTextField tname;
+    private static JTextField tname;
     private JLabel id;
-    private JTextField tid;
+    private static JTextField tid;
     private JLabel mobile;
-    private JTextField tmobile;
+    private static JTextField tmobile;
     private JLabel email;
-    private JTextField temail;
+    private static JTextField temail;
     private JLabel gender;
-    private JRadioButton male;
-    private JRadioButton female;
+    private static JRadioButton male;
+    private static JRadioButton female;
     private ButtonGroup gendergrp;
     private JLabel dob;
-    private JTextField tdob;
+    private static JTextField tdob;
     private JLabel address;
-    private JTextArea taddress;
+    private static JTextArea taddress;
     private JLabel heading;
     private JLabel numberofforms;
     private JLabel schoolname;
     private JLabel areas;
     private JLabel manager;
-    private JTextField tnumberofforms;
-    private JTextField tschoolname;
+    private static JTextField tnumberofforms;
+    private static JTextField tschoolname;
     private JLabel schoolid;
-    private JTextField tschoolid;
+    private static JTextField tschoolid;
     private JLabel districtid;
-    private JTextField tdistrictid;
-    private JTextField tmanager;
-    private JTextField tarea;
+    private static JTextField tdistrictid;
+    private static JTextField tmanager;
+    private static JTextField tarea;
 
     public PersonalDetails() {
 
-        temp temp = new temp("Username123", "password123", "Michael", "AM0001", "4351248557", "abc@gmail.com", 'M', "25/02/2002",
-                "No. 15, 6th street, Ashok Nagar, Chennai-83", "AMM023", "PCS School", 20, "123456");
 
         // Create new JLabel
         heading = new JLabel("Edit Profile");
@@ -174,23 +109,22 @@ public class PersonalDetails extends JPanel {
         areas = new JLabel("Area");
 
         // Create new JTextfield and JTextArea
-        tusername = new JTextField(temp.getUsername());
-        tname = new JTextField(temp.getName());
-        tid = new JTextField(temp.getId());
-        tmobile = new JTextField(temp.getMobile());
-        temail = new JTextField(temp.getEmail());
-        tdob = new JTextField(temp.getDob());
-        tusername = new JTextField(temp.getUsername());
-        tpassword = new JTextField(temp.getPassword());
-        tnumberofforms = new JTextField(String.valueOf(temp.getFormsubmitted()));
-        tschoolname = new JTextField(temp.getSchoolname());
+        tusername = new JTextField();
+        tname = new JTextField();
+        tid = new JTextField();
+        tmobile = new JTextField();
+        temail = new JTextField();
+        tdob = new JTextField();
+        tpassword = new JTextField();
+        tnumberofforms = new JTextField();
+        tschoolname = new JTextField();
         tschoolid = new JTextField();
         tdistrictid = new JTextField();
-        tmanager = new JTextField(temp.getManager());
-        tarea = new JTextField(temp.getAreas());
-        taddress = new JTextArea(temp.getAddress());
+        tmanager = new JTextField();
+        tarea = new JTextField();
+        taddress = new JTextArea();
         
-
+        detail();
         // setEditable(false) to non editable text fields
         tusername.setEditable(false);
         tschoolname.setEditable(false);
@@ -199,6 +133,8 @@ public class PersonalDetails extends JPanel {
         tarea.setEditable(false);
         tschoolid.setEditable(false);
         tdistrictid.setEditable(false);
+        tid.setEditable(false);
+        tname.setEditable(false);
 
         // Create ButtonGroup and JRadioButton for gender.
         gendergrp = new ButtonGroup();
@@ -270,8 +206,6 @@ public class PersonalDetails extends JPanel {
         saveButton.setBounds(450, 380, 100, 25);
 
         // assign gender
-        male.setSelected(temp.getGender() == 'M');
-        female.setSelected(temp.getGender() == 'F');
 
         // Make the cursor move to next line when it hits the end of width
         taddress.setLineWrap(true);
@@ -322,10 +256,11 @@ public class PersonalDetails extends JPanel {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                temp.setEmail(temail.getText());
-                temp.setMobile(tmobile.getText());
-                temp.setAddress(taddress.getText());
-                temp.setPassword(tpassword.getText());
+                TeacherDashboard.teacher.setEmail(temail.getText());
+                TeacherDashboard.teacher.setPhoneNo(tmobile.getText());
+                TeacherDashboard.teacher.setAddress(taddress.getText());
+                TeacherDashboard.teacher.setPassword(tpassword.getText());
+                TeacherDashboard.setValues(TeacherDashboard.teacher);
             }
         });
 

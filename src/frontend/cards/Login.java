@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 import frontend.Master;
+import frontend.tabs.PersonalDetails;
 import backend.PostgreSQLAccess;
 
 public class Login extends JPanel implements ActionListener {
@@ -24,6 +25,7 @@ public class Login extends JPanel implements ActionListener {
     JButton LoginButton = new JButton("Login to Dashboard");
     JCheckBox showPassword = new JCheckBox(" Show Password");
     Font font = new Font("Arial", Font.BOLD, 15);
+    public static String givenUsername = "";
 
     public Login() {
 
@@ -76,7 +78,7 @@ public class Login extends JPanel implements ActionListener {
             passwordField.setEchoChar('\u25cf');
         }
         if (source == LoginButton) {
-            String givenUsername = userTextField.getText();
+            givenUsername = userTextField.getText();
             String givenPassword = passwordField.getText();
             if ("".equals(givenUsername) || "".equals(givenPassword)) {
                 JOptionPane.showMessageDialog(panel, "Enter both a Username/Password");
@@ -93,6 +95,8 @@ public class Login extends JPanel implements ActionListener {
                                 Master.goTo("ManagerDashboard");
                             } else {
                                 Master.goTo("TeacherDashboard");
+                                TeacherDashboard.assigning();
+                                PersonalDetails.setvalue();
                             }
                         }
                     } else {
