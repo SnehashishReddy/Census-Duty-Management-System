@@ -6,6 +6,7 @@ public class Teacher extends User {
     protected int schoolID;
     protected int teacherID;
 
+
     /**
      * @return int return the areaCode
      */
@@ -37,28 +38,28 @@ public class Teacher extends User {
     /**
      * @return int return the schoolID
      */
-    public int getSchoolID() {
+    public String getSchoolID() {
         return schoolID;
     }
 
     /**
      * @param schoolID the schoolID to set
      */
-    public void setSchoolID(int schoolID) {
+    public void setSchoolID(String schoolID) {
         this.schoolID = schoolID;
     }
 
     /**
      * @return int return the teacherID
      */
-    public int getTeacherID() {
+    public String getTeacherID() {
         return teacherID;
     }
 
     /**
      * @param teacherID the teacherID to set
      */
-    public void setTeacherID(int teacherID) {
+    public void setTeacherID(String teacherID) {
         this.teacherID = teacherID;
     }
 

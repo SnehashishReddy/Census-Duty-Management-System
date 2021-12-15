@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 import frontend.Master;
+import frontend.tabs.PersonalDetails;
 import backend.PostgreSQLAccess;
 
 public class Login extends JPanel implements ActionListener {
@@ -95,6 +96,8 @@ public class Login extends JPanel implements ActionListener {
                                 ManagerDashboard.onLogin();
                             } else {
                                 Master.goTo("TeacherDashboard");
+                                TeacherDashboard.assigning();
+                                PersonalDetails.setvalue();
                             }
                         }
                     } else {
