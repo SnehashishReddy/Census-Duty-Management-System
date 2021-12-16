@@ -62,9 +62,4 @@ public class Teacher extends User {
         this.teacherID = teacherID;
     }
 
-    public boolean submitForm(String... args) {
-        // Do smth with args
-        return true;
-    }
-
 }

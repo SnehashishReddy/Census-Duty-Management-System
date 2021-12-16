@@ -17,8 +17,9 @@ import frontend.tabs.Form;
 import frontend.tabs.PersonalDetails;
 import frontend.tabs.ViewForms;
 import frontend.custom.RoundedBorder;
+import frontend.custom.Logout;
 
-public class TeacherDashboard extends JPanel {
+public class TeacherDashboard extends JPanel implements Logout {
     public static Teacher teacher;
     public static String givenUsername;
 
@@ -119,7 +120,7 @@ public class TeacherDashboard extends JPanel {
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Master.goTo("Login");
+                causeLogOut();
             }
         });
 
@@ -141,5 +142,10 @@ public class TeacherDashboard extends JPanel {
         tp.addTab("Personal Details", personalDetails);
 
         add(tp);
+    }
+
+    public void causeLogOut() {
+        Login.givenUsername = "";
+        Master.goTo("Login");
     }
 }

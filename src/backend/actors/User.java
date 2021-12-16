@@ -169,24 +169,4 @@ public abstract class User {
         this.managerID = managerID;
     }
 
-    private boolean login(String username, String password) {
-        // Verify Details
-        return false;
-    }
-
-    private boolean logOut() {
-        // Destroy Instances and logout
-        return true;
-    }
-
-    private String viewSubmittedForms() {
-        // Return all the rows, columns post fetching from the DB
-        return "";
-    }
-
-    private boolean editPersonalDetails() {
-        // Edit Personal Details
-        return true;
-    }
-
 }

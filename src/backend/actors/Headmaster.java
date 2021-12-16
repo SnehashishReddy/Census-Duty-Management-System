@@ -1,18 +1,8 @@
 package backend.actors;
 
 public class Headmaster extends Manager {
-
-    String schoolName;
     int schoolID;
     int districtID;
-
-    public String getSchoolName() {
-        return this.schoolName;
-    }
-
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
-    }
 
     public int getSchoolID() {
         return this.schoolID;

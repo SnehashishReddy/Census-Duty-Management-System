@@ -61,44 +61,4 @@ public abstract class Manager extends User {
     public void setRegion(int[] region) {
         this.region = region;
     }
-
-    public String[] viewUsers(boolean underHierarchy, boolean underRegion) {
-        // Give String[] of users
-        return new String[10];
-    }
-
-    public boolean addUsers(String user, boolean underHierarchy, boolean underRegion) {
-        // Add a user
-        return true;
-    }
-
-    public boolean editUser(String user, boolean underHierarchy, boolean underRegion) {
-        // Edit the user
-        return true;
-    }
-
-    public boolean removeUser(String user, boolean underHierarchy, boolean underRegion) {
-        // Remove a user
-        return true;
-    }
-
-    public boolean modifySubmittedForms(String[] form, boolean underRegion) {
-        // Modify the form
-        return true;
-    }
-
-    public String[] viewLocalRegistry(boolean underHierarchy) {
-        // Return the Local RegPart
-        return new String[10];
-    }
-
-    public boolean underHierarchy() {
-        // Return true if under Hierarchy => use the param int hierarchy in this class
-        return false;
-    }
-
-    public boolean underRegion() {
-        // Return true if under Region => use the param int region in this class
-        return false;
-    }
 }

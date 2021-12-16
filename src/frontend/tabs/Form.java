@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Form extends JPanel implements ActionListener {
     public static int number_of_form;
-    public static Form form;
+    // public static Form form;
     public static ArrayList<String> inp;
 
     public static void census(ArrayList<String> inp) {

@@ -17,7 +17,9 @@ import frontend.custom.RoundedBorder;
 import backend.actors.*;
 import backend.PostgreSQLAccess;
 
-public class ManagerDashboard extends JPanel {
+import frontend.custom.Logout;
+
+public class ManagerDashboard extends JPanel implements Logout {
     public static Manager managingActor;
     static JButton resultsButton;
     static JTabbedPane tp;
@@ -38,9 +40,7 @@ public class ManagerDashboard extends JPanel {
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(Login.givenUsername);
-                Login.givenUsername = "";
-                Master.goTo("Login");
+                causeLogOut();
             }
         });
 
@@ -92,6 +92,12 @@ public class ManagerDashboard extends JPanel {
         tp.addTab("Local Registry Partition", regpart);
 
         add(tp);
+    }
+
+    public void causeLogOut() {
+        System.out.println(Login.givenUsername);
+        Login.givenUsername = "";
+        Master.goTo("Login");
     }
 
     public static void onLogin() {
