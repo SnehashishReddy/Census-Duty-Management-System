@@ -116,9 +116,6 @@ public class ManagerDashboard extends JPanel {
         if ("Head Master".equals(designationType)) {
             managingActor = new Headmaster();
             resultsButton.setVisible(false);
-        } else if ("Director".equals(designationType)) {
-            managingActor = new Director();
-            resultsButton.setVisible(false);
         } else if ("Commissioner".equals(designationType)) {
             managingActor = new Commissioner();
             resultsButton.setVisible(true);

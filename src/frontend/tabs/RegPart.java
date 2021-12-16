@@ -74,20 +74,22 @@ public class RegPart extends JPanel {
                 e.printStackTrace();
             }
             query = query.concat(" where district_id = \'" + districtID + "\';");
-        } else if (ManagerDashboard.managingActor.getDesignation().equals("Director")) {
-            ResultSet rst = PostgreSQLAccess
-                    .fetch("select state_id from director where username=\'" + Login.givenUsername + "\';");
-            String stateID = "";
-            try {
-                while (rst.next()) {
-                    stateID = rst.getString(1);
-                }
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            query = query.concat(" where state_id = \'" + stateID + "\';");
-        }
+        } // else if (ManagerDashboard.managingActor.getDesignation().equals("Director"))
+          // {
+          // ResultSet rst = PostgreSQLAccess
+          // .fetch("select state_id from director where username=\'" +
+          // Login.givenUsername + "\';");
+          // String stateID = "";
+          // try {
+          // while (rst.next()) {
+          // stateID = rst.getString(1);
+          // }
+          // } catch (SQLException e) {
+          // // TODO Auto-generated catch block
+          // e.printStackTrace();
+          // }
+          // query = query.concat(" where state_id = \'" + stateID + "\';");
+          // }
         ResultSet rs;
         ResultSetMetaData rsmd;
         ArrayList<ArrayList<String>> regpart = new ArrayList<>();
