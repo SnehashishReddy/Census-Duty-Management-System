@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -18,6 +19,8 @@ import backend.PostgreSQLAccess;
 
 public class ManagerDashboard extends JPanel {
     public static Manager managingActor;
+    static JButton resultsButton;
+    static JTabbedPane tp;
 
     public ManagerDashboard() {
         setLayout(new BorderLayout(0, 10));
@@ -26,8 +29,9 @@ public class ManagerDashboard extends JPanel {
         topPanel.setLayout(new BorderLayout());
         JLabel l1 = new JLabel("     Manager Dashboard ");
         topPanel.add(l1, BorderLayout.WEST);
-        l1.setPreferredSize(new Dimension(400, 30));
+        l1.setPreferredSize(new Dimension(550, 30));
 
+        resultsButton = new JButton("Toggle Result Status");
         JButton logoutButton = new JButton("Log Out");
         logoutButton.setBorder(new RoundedBorder(10));
         logoutButton.setPreferredSize(new Dimension(80, 3));
@@ -42,11 +46,43 @@ public class ManagerDashboard extends JPanel {
 
         topPanel.add(logoutButton, BorderLayout.EAST);
 
+        resultsButton.setBorder(new RoundedBorder(10));
+        resultsButton.setPreferredSize(new Dimension(80, 3));
+
+        resultsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ResultSet rs = PostgreSQLAccess.fetch("select is_published from commissioner;");
+                Boolean currentState = false;
+                Boolean toggledState;
+                try {
+                    while (rs.next()) {
+                        currentState = rs.getBoolean(1);
+                    }
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                if (currentState) {
+                    toggledState = false;
+                } else {
+                    toggledState = true;
+                }
+                System.out.println(currentState);
+                System.out.println(toggledState);
+                String query = "update commissioner set is_published = " + toggledState.toString() + ";";
+                PostgreSQLAccess.executeUpdate(query);
+                JOptionPane.showMessageDialog(tp, "Census Publishment State has been toggled");
+            }
+        });
+
+        topPanel.add(resultsButton, BorderLayout.CENTER);
+
         topPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         add(topPanel, BorderLayout.NORTH);
 
-        JTabbedPane tp = new JTabbedPane();
+        tp = new JTabbedPane();
         tp.setBounds(0, 0, 850, 450);
 
         TeacherManagement teachermanagement = new TeacherManagement();
@@ -79,15 +115,22 @@ public class ManagerDashboard extends JPanel {
 
         if ("Head Master".equals(designationType)) {
             managingActor = new Headmaster();
+            resultsButton.setVisible(false);
         } else if ("Director".equals(designationType)) {
             managingActor = new Director();
+            resultsButton.setVisible(false);
         } else if ("Commissioner".equals(designationType)) {
             managingActor = new Commissioner();
+            resultsButton.setVisible(true);
         }
 
         managingActor.setDesignation(designationType);
         managingActor.setUsertype(userType);
 
         RegPart.onManagerLogin();
+    }
+
+    public static void displaySaveSuccess() {
+        JOptionPane.showMessageDialog(tp, "Save was successful");
     }
 }

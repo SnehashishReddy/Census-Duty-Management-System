@@ -257,6 +257,7 @@ public class PersonalDetails extends JPanel {
                     TeacherDashboard.teacher.setGender('F');
                 TeacherDashboard.setValues(TeacherDashboard.teacher);
                 TeacherDashboard.setPhoneNo(TeacherDashboard.teacher);
+                frontend.cards.ManagerDashboard.displaySaveSuccess();
             }
         });
 

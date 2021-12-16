@@ -14,7 +14,7 @@ import frontend.tabs.PersonalDetails;
 import backend.PostgreSQLAccess;
 
 public class Login extends JPanel implements ActionListener {
-    JPanel panel = new JPanel();
+    static JPanel panel = new JPanel();
     ImageIcon i = new ImageIcon(Master.class.getResource("/assets/Census-of-India-Recruitment.jpg"));
     JLabel label = new JLabel(i, SwingConstants.CENTER);
     JLabel userLabel = new JLabel("USERNAME");
@@ -110,7 +110,22 @@ public class Login extends JPanel implements ActionListener {
                 }
             }
         } else if (source == nextButton) {
-            Master.goTo("Statistics");
+
+            ResultSet rs = PostgreSQLAccess.fetch("select is_published from commissioner;");
+            Boolean currentState = false;
+            try {
+                while (rs.next()) {
+                    currentState = rs.getBoolean(1);
+                }
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+            if (currentState) {
+                Master.goTo("Statistics");
+            } else {
+                JOptionPane.showMessageDialog(panel, "Census has not been published yet");
+            }
         }
     }
 }
