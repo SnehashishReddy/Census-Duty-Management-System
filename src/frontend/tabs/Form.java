@@ -18,18 +18,24 @@ public class Form extends JPanel implements ActionListener {
     public static int number_of_form;
     public static Form form;
     public static ArrayList<String> inp;
-    public static void census(ArrayList<String> inp){
-        form = new Form();
-        
-        String query1 = "insert into Census  values ('"+ inp.get(0) +"','"+ inp.get(1) +"',"+ inp.get(2) +","+ inp.get(3) +","+ inp.get(4) +",'"+ inp.get(5) +"','"+ inp.get(6) +"','"+ inp.get(7) +"','"+ inp.get(8) +"','"+ inp.get(9) +"','"+ inp.get(10) +"','"+ inp.get(11) +"','"+ inp.get(12) +"','"+ inp.get(13) +"','"+ inp.get(14) +"',"+ inp.get(15) +",'"+ inp.get(16) +"',TO_DATE('"+ inp.get(17) +"', 'DD/MM/YYYY'),'"+ inp.get(18) +"','"+ inp.get(19) +"','"+ inp.get(20) +"','"+ inp.get(21) +"'); ";
+
+    public static void census(ArrayList<String> inp) {
+        // form = new Form();
+
+        String query1 = "insert into Census  values ('" + inp.get(0) + "','" + inp.get(1) + "'," + inp.get(2) + ","
+                + inp.get(3) + "," + inp.get(4) + ",'" + inp.get(5) + "','" + inp.get(6) + "','" + inp.get(7) + "','"
+                + inp.get(8) + "','" + inp.get(9) + "','" + inp.get(10) + "','" + inp.get(11) + "','" + inp.get(12)
+                + "','" + inp.get(13) + "','" + inp.get(14) + "'," + inp.get(15) + ",'" + inp.get(16) + "',TO_DATE('"
+                + inp.get(17) + "', 'DD/MM/YYYY'),'" + inp.get(18) + "','" + inp.get(19) + "','" + inp.get(20) + "','"
+                + inp.get(21) + "'); ";
         PostgreSQLAccess.executeUpdate(query1);
     }
-    public static void function(Teacher teacher)
-    {
+
+    public static void function(Teacher teacher) {
         String query1 = "select count(*) from Census;";
         ResultSet rs1 = PostgreSQLAccess.fetch(query1);
         try {
-            while(rs1.next()) {
+            while (rs1.next()) {
 
                 number_of_form = rs1.getInt(1);
             }
@@ -37,6 +43,7 @@ public class Form extends JPanel implements ActionListener {
             e1.printStackTrace();
         }
     }
+
     String dates[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
             "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
     String months[] = { "Jan", "feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sup", "Oct", "Nov", "Dec" };
@@ -170,7 +177,7 @@ public class Form extends JPanel implements ActionListener {
 
     public Form() {
         inp = new ArrayList<>(21);
-    //    census();
+        // census();
         title.setFont(new Font("Arial", Font.PLAIN, 30));
         title.setSize(100, 15);
         add(title);
@@ -254,23 +261,23 @@ public class Form extends JPanel implements ActionListener {
                                 AadNo.getText(),
                                 gengrp.getSelection().getActionCommand()
                         });
-                inp.add(8,fn.getText());
-                inp.add(9,mn.getText());
-                inp.add(10,ln.getText());
-                inp.add(11,mom.getText());
-                inp.add(12,dad.getText());
-                inp.add(13,con.getText());
-                inp.add(14,AadNo.getText());
-                inp.add(15,String.valueOf(yes.isSelected()));
-                inp.add(16,rela.getSelectedItem().toString());
-                String Dob1 = date.getSelectedItem().toString() + "/" + (month.getSelectedIndex()+1) + "/"
-                            + year.getSelectedItem().toString();
-                inp.add(17,Dob1);
-                inp.add(18,gengrp.getSelection().getActionCommand());
-                inp.add(19,qua.getText());
-                inp.add(20,work.getText());
-                inp.add(21,nation.getSelectedItem().toString());
-            //    System.out.println(inp);
+                inp.add(8, fn.getText());
+                inp.add(9, mn.getText());
+                inp.add(10, ln.getText());
+                inp.add(11, mom.getText());
+                inp.add(12, dad.getText());
+                inp.add(13, con.getText());
+                inp.add(14, AadNo.getText());
+                inp.add(15, String.valueOf(yes.isSelected()));
+                inp.add(16, rela.getSelectedItem().toString());
+                String Dob1 = date.getSelectedItem().toString() + "/" + (month.getSelectedIndex() + 1) + "/"
+                        + year.getSelectedItem().toString();
+                inp.add(17, Dob1);
+                inp.add(18, gengrp.getSelection().getActionCommand());
+                inp.add(19, qua.getText());
+                inp.add(20, work.getText());
+                inp.add(21, nation.getSelectedItem().toString());
+                // System.out.println(inp);
                 census(inp);
             }
         });
@@ -449,16 +456,16 @@ public class Form extends JPanel implements ActionListener {
             gbutton.setVisible(true);
             System.out.println(number_of_form);
             function(TeacherDashboard.teacher);
-            int temp=number_of_form+1;
-            String FormId= "F"+ String.format("%05d",temp);
-            inp.add(0,FormId);
-            inp.add(1,TeacherDashboard.teacher.getTeacherID());
-            inp.add(2,TotalMembers.getText());
-            inp.add(3,num.getText());
-            inp.add(4,sno.getText());
-            inp.add(5,sna.getText());
-            inp.add(6,ci.getText());
-            inp.add(7,st.getText());
+            int temp = number_of_form + 1;
+            String FormId = "F" + String.format("%05d", temp);
+            inp.add(0, FormId);
+            inp.add(1, TeacherDashboard.teacher.getTeacherID());
+            inp.add(2, TotalMembers.getText());
+            inp.add(3, num.getText());
+            inp.add(4, sno.getText());
+            inp.add(5, sna.getText());
+            inp.add(6, ci.getText());
+            inp.add(7, st.getText());
 
         }
         if (source == Go) {
@@ -467,8 +474,8 @@ public class Form extends JPanel implements ActionListener {
             gbutton.setVisible(false);
             Image.setVisible(true);
             panel.setVisible(true);
-            
-       //     form.setSchema()
+
+            // form.setSchema()
 
         }
         if (source == submit) {
@@ -505,7 +512,7 @@ public class Form extends JPanel implements ActionListener {
             gbutton.setVisible(false);
             Image.setVisible(true);
             panel.setVisible(true);
-            
+
         }
     }
 }
