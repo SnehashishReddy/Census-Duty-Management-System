@@ -12,32 +12,34 @@ import backend.PostgreSQLAccess;
 import frontend.Master;
 import frontend.cards.TeacherDashboard;
 
-
 public class PersonalDetails extends JPanel {
 
-    public static void detail(){
-         String query1 = "select count(*) from Census where teacher_id =" + "\'" + TeacherDashboard.teacher.getTeacherID()+ "\';";
+    public static void detail() {
+        String query1 = "select count(*) from Census where teacher_id =" + "\'"
+                + TeacherDashboard.teacher.getTeacherID() + "\';";
         ResultSet rs1 = PostgreSQLAccess.fetch(query1);
         try {
-            while(rs1.next()) {
-                 tnumberofforms.setText(rs1.getString(1));
+            while (rs1.next()) {
+                tnumberofforms.setText(rs1.getString(1));
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
-        String query2 = "select district_id,manager_id from teacher where teacher_id =" + "\'" + TeacherDashboard.teacher.getTeacherID()+ "\';";
+        String query2 = "select district_id,manager_id from teacher where teacher_id =" + "\'"
+                + TeacherDashboard.teacher.getTeacherID() + "\';";
         ResultSet rs2 = PostgreSQLAccess.fetch(query2);
         try {
-            while(rs2.next()) {
-                 tdistrictid.setText(rs2.getString("district_id"));
-                 tmanager.setText(rs2.getString("manager_id"));
+            while (rs2.next()) {
+                tdistrictid.setText(rs2.getString("district_id"));
+                tmanager.setText(rs2.getString("manager_id"));
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
 
     }
-    public static void setvalue(){
+
+    public static void setvalue() {
         male.setSelected(TeacherDashboard.teacher.getGender() == 'M');
         female.setSelected(TeacherDashboard.teacher.getGender() == 'F');
         tusername.setText(TeacherDashboard.teacher.getUsername());
@@ -53,6 +55,7 @@ public class PersonalDetails extends JPanel {
         temail.setText(TeacherDashboard.teacher.getEmail());
         detail();
     }
+
     private JLabel username;
     private static JTextField tusername;
     private JLabel password;
@@ -89,7 +92,6 @@ public class PersonalDetails extends JPanel {
 
     public PersonalDetails() {
 
-
         // Create new JLabel
         heading = new JLabel("Edit Profile");
         username = new JLabel("Username");
@@ -123,7 +125,7 @@ public class PersonalDetails extends JPanel {
         tmanager = new JTextField();
         tarea = new JTextField();
         taddress = new JTextArea();
-        
+
         detail();
         // setEditable(false) to non editable text fields
         tusername.setEditable(false);
@@ -165,7 +167,6 @@ public class PersonalDetails extends JPanel {
         manager.setSize(100, 20);
         numberofforms.setSize(100, 20);
         areas.setSize(100, 20);
-
 
         // Set locations of JLabel
         heading.setLocation(350, 0);

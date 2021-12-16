@@ -128,9 +128,9 @@ public class TeacherManagement extends JPanel {
                 row[6] = textassigned.getText();
 
                 // add row to the model
-                String sql1 = "insert into user_ (username, name, date_of_birth, usertype, designation) values (\'"
+                String sql1 = "insert into user_ (username, name, date_of_birth, usertype, designation,gender) values (\'"
                         + row[0] + "\',\'" + row[4] + "\',TO_DATE(\'" + row[5] + "\','DD/MM/YYYY') "
-                        + ", 'Teacher', 'Teacher');";
+                        + ", 'Teacher', 'Teacher','M');";
                 System.out.println(sql1);
 
                 String sql2 = "insert into Authentication values (\'" + row[0] + "\', \'" + row[1] + "\');";

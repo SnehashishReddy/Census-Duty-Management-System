@@ -19,13 +19,13 @@ import frontend.custom.RoundedBorder;
 public class TeacherDashboard extends JPanel {
     public static Teacher teacher;
     public static String givenUsername;
-    public static void assigning()
-    {
+
+    public static void assigning() {
         givenUsername = Login.givenUsername;
         String query1 = "select * from user_ where username=" + "\'" + givenUsername + "\';";
         ResultSet rs1 = PostgreSQLAccess.fetch(query1);
         try {
-            while(rs1.next()) {
+            while (rs1.next()) {
 
                 teacher.setUsername(rs1.getString("username"));
                 teacher.setName(rs1.getString("name"));
@@ -42,7 +42,7 @@ public class TeacherDashboard extends JPanel {
         String query2 = "select * from phone_nos where username=" + "\'" + givenUsername + "\';";
         ResultSet rs2 = PostgreSQLAccess.fetch(query2);
         try {
-            while(rs2.next()) {
+            while (rs2.next()) {
 
                 teacher.setPhoneNo(rs2.getString("phone_no"));
             }
@@ -52,7 +52,7 @@ public class TeacherDashboard extends JPanel {
         String query3 = "select * from teacher where username=" + "\'" + givenUsername + "\';";
         ResultSet rs3 = PostgreSQLAccess.fetch(query3);
         try {
-            while(rs3.next()) {
+            while (rs3.next()) {
                 System.out.println(rs3.getString(1));
                 teacher.setAreaCode(Integer.valueOf(rs3.getString("assigned_area_id")));
                 teacher.setTeacherID(rs3.getString("teacher_id"));
@@ -65,24 +65,28 @@ public class TeacherDashboard extends JPanel {
         String query4 = "select password from Authentication where username=" + "\'" + givenUsername + "\';";
         ResultSet rs4 = PostgreSQLAccess.fetch(query4);
         try {
-            while(rs4.next()) {
+            while (rs4.next()) {
                 teacher.setPassword(rs4.getString(1));
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
     }
-    public static void setValues(Teacher teacher)
-    {
-        String query1 = "Update user_ set email_id =" + "\'" + teacher.getEmail() + "\' , address =" + "\'" + teacher.getAddress() + "\' where username=" + "\'" + givenUsername + "\';";
-        String query2 = "Update phone_nos set phone_no = " + "\'" + teacher.getPhoneNo() + "\' where username=" + "\'" + givenUsername + "\';";
-        String query3 = "Update Authentication set password=" + "\'" + teacher.getPassword() + "\'where username=;"+ "\'" + givenUsername + "\';";
+
+    public static void setValues(Teacher teacher) {
+        String query1 = "Update user_ set email_id =" + "\'" + teacher.getEmail() + "\' , address =" + "\'"
+                + teacher.getAddress() + "\' where username=" + "\'" + givenUsername + "\';";
+        String query2 = "Update phone_nos set phone_no = " + "\'" + teacher.getPhoneNo() + "\' where username=" + "\'"
+                + givenUsername + "\';";
+        String query3 = "Update Authentication set password=" + "\'" + teacher.getPassword() + "\'where username=;"
+                + "\'" + givenUsername + "\';";
         PostgreSQLAccess.executeUpdate(query1);
         PostgreSQLAccess.executeUpdate(query2);
         PostgreSQLAccess.executeUpdate(query3);
     }
+
     public TeacherDashboard() {
-        teacher =new Teacher();
+        teacher = new Teacher();
         setLayout(new BorderLayout(0, 10));
 
         JPanel topPanel = new JPanel();
