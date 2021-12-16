@@ -7,7 +7,7 @@ import javax.swing.event.*;
 
 public class Statistics extends JPanel implements ActionListener {
     JPanel panel = new JPanel(new BorderLayout());
-    JButton view = new JButton("View Details");
+    // JButton view = new JButton("View Details");
     JButton Go = new JButton("Go Back");
     private double[] value = { 1, 2, 12, 7, 0, 12, 1, 4, 6, 8 };
     private String[] languages = { "Birth \nRate", "Death \nRate", "Male", "Female", "Others", "Employed", "Unemployed",
@@ -20,7 +20,7 @@ public class Statistics extends JPanel implements ActionListener {
         title1.setSize(400, 30);
         panel.add(Go, BorderLayout.WEST);
         panel.add(title1, BorderLayout.CENTER);
-        panel.add(view, BorderLayout.EAST);
+        // panel.add(view, BorderLayout.EAST);
         add(panel);
         panel.setPreferredSize(new Dimension(850, 30));
         title = "                       ";

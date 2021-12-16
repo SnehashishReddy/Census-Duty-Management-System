@@ -12,15 +12,51 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.table.*;
 
 public class RegPart extends JPanel {
     public static String query = "";
     public static JScrollPane sp = new JScrollPane();
     public static String districtID;
+    static TableModel model;
+    static JTextField jtf;
+    static TableRowSorter sorter;
+    static JTable jt;
 
     public RegPart() {
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout());
+        JLabel jl = new JLabel("Search: ");
+        jtf = new JTextField(30);
+
+        add(jl);
+        add(jtf);
         add(sp);
+        sp.setPreferredSize(new Dimension(835, 500));
+
+        jtf.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search(jtf.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search(jtf.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search(jtf.getText());
+            }
+
+            public void search(String str) {
+                if (str.length() == 0) {
+                    sorter.setRowFilter(null);
+                } else {
+                    sorter.setRowFilter(RowFilter.regexFilter(str));
+                }
+            }
+        });
     }
 
     public static void onManagerLogin() {
@@ -82,7 +118,13 @@ public class RegPart extends JPanel {
         String[][] data = regpart.stream().map(u -> u.toArray(new String[0])).toArray(String[][]::new);
         String[] column = { "Form ID", "T-ID", "D-ID", "NAME", "PHONE NO.", "AADHAR NO.", "GENDER",
                 "EDUCATION", "OCCUPATION", "NATIONALITY" };
-        JTable jt = new JTable(data, column);
+
+        model = new DefaultTableModel(data, column);
+        sorter = new TableRowSorter<>(model);
+
+        jt = new JTable(data, column);
+        jt.setRowSorter(sorter);
+
         sp.setViewportView(jt);
     }
 }
