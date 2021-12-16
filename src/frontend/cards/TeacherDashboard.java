@@ -78,7 +78,7 @@ public class TeacherDashboard extends JPanel {
                 + teacher.getAddress() + "\' where username=" + "\'" + givenUsername + "\';";
         String query2 = "Update phone_nos set phone_no = " + "\'" + teacher.getPhoneNo() + "\' where username=" + "\'"
                 + givenUsername + "\';";
-        String query3 = "Update Authentication set password=" + "\'" + teacher.getPassword() + "\'where username=;"
+        String query3 = "Update Authentication set password=" + "\'" + teacher.getPassword() + "\' where username="
                 + "\'" + givenUsername + "\';";
         PostgreSQLAccess.executeUpdate(query1);
         PostgreSQLAccess.executeUpdate(query2);
