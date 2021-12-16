@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.lang.model.util.ElementScanner6;
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.text.View;
 
 import backend.PostgreSQLAccess;
 import backend.actors.Teacher;
@@ -74,6 +75,7 @@ public class TeacherDashboard extends JPanel {
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
+        ViewForms.onTeacherLogin();
     }
 
     public static void setValues(Teacher teacher) {

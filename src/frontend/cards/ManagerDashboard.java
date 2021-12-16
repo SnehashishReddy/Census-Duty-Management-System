@@ -88,6 +88,6 @@ public class ManagerDashboard extends JPanel {
         managingActor.setDesignation(designationType);
         managingActor.setUsertype(userType);
 
-        RegPart.onAnotherLogin();
+        RegPart.onManagerLogin();
     }
 }
