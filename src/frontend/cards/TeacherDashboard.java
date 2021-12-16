@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.lang.model.util.ElementScanner6;
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -30,7 +31,10 @@ public class TeacherDashboard extends JPanel {
                 teacher.setUsername(rs1.getString("username"));
                 teacher.setName(rs1.getString("name"));
                 teacher.setDateOfBirth(rs1.getDate("date_of_birth"));
-                teacher.setGender(rs1.getString("gender").charAt(0));
+                if (rs1.getString("gender") != null)
+                    teacher.setGender(rs1.getString("gender").charAt(0));
+                else
+                    teacher.setGender('N');
                 teacher.setAddress(rs1.getString("address"));
                 teacher.setUsertype(rs1.getString("usertype"));
                 teacher.setDesignation(rs1.getString("designation"));
@@ -43,7 +47,6 @@ public class TeacherDashboard extends JPanel {
         ResultSet rs2 = PostgreSQLAccess.fetch(query2);
         try {
             while (rs2.next()) {
-
                 teacher.setPhoneNo(rs2.getString("phone_no"));
             }
         } catch (SQLException e1) {
@@ -75,14 +78,27 @@ public class TeacherDashboard extends JPanel {
 
     public static void setValues(Teacher teacher) {
         String query1 = "Update user_ set email_id =" + "\'" + teacher.getEmail() + "\' , address =" + "\'"
-                + teacher.getAddress() + "\' where username=" + "\'" + givenUsername + "\';";
-        String query2 = "Update phone_nos set phone_no = " + "\'" + teacher.getPhoneNo() + "\' where username=" + "\'"
+                + teacher.getAddress() + "\', gender =" + "\'" + teacher.getGender() + "\'" + " where username=" + "\'"
                 + givenUsername + "\';";
         String query3 = "Update Authentication set password=" + "\'" + teacher.getPassword() + "\' where username="
                 + "\'" + givenUsername + "\';";
         PostgreSQLAccess.executeUpdate(query1);
-        PostgreSQLAccess.executeUpdate(query2);
         PostgreSQLAccess.executeUpdate(query3);
+    }
+
+    public static void setPhoneNo(Teacher teacher) {
+        String query1 = "select * from phone_nos where username = '" + givenUsername + "' AND phone_no = '"
+                + teacher.getPhoneNo() + "';";
+        ResultSet rs1 = PostgreSQLAccess.fetch(query1);
+        try {
+            if (rs1.next() == false) {
+                String query2 = "Insert into phone_nos values ('" + teacher.getUsername() + "','" + teacher.getPhoneNo()
+                        + "');";
+                PostgreSQLAccess.executeUpdate(query2);
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
     }
 
     public TeacherDashboard() {

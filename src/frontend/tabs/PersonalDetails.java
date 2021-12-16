@@ -48,7 +48,6 @@ public class PersonalDetails extends JPanel {
         tmobile.setText(TeacherDashboard.teacher.getPhoneNo());
         tdob.setText(String.valueOf(TeacherDashboard.teacher.getDateOfBirth()));
         tpassword.setText(TeacherDashboard.teacher.getPassword());
-        tschoolname.setText(TeacherDashboard.teacher.getSchoolName());
         tschoolid.setText(TeacherDashboard.teacher.getSchoolID());
         tarea.setText(String.valueOf(TeacherDashboard.teacher.getAreaCode()));
         taddress.setText(TeacherDashboard.teacher.getAddress());
@@ -78,11 +77,9 @@ public class PersonalDetails extends JPanel {
     private static JTextArea taddress;
     private JLabel heading;
     private JLabel numberofforms;
-    private JLabel schoolname;
     private JLabel areas;
     private JLabel manager;
     private static JTextField tnumberofforms;
-    private static JTextField tschoolname;
     private JLabel schoolid;
     private static JTextField tschoolid;
     private JLabel districtid;
@@ -104,7 +101,6 @@ public class PersonalDetails extends JPanel {
         dob = new JLabel("Date of Birth");
         address = new JLabel("Address");
         numberofforms = new JLabel("Submitted");
-        schoolname = new JLabel("School Name");
         schoolid = new JLabel("School ID");
         districtid = new JLabel("District ID");
         manager = new JLabel("Manager");
@@ -119,7 +115,6 @@ public class PersonalDetails extends JPanel {
         tdob = new JTextField();
         tpassword = new JTextField();
         tnumberofforms = new JTextField();
-        tschoolname = new JTextField();
         tschoolid = new JTextField();
         tdistrictid = new JTextField();
         tmanager = new JTextField();
@@ -129,7 +124,6 @@ public class PersonalDetails extends JPanel {
         detail();
         // setEditable(false) to non editable text fields
         tusername.setEditable(false);
-        tschoolname.setEditable(false);
         tnumberofforms.setEditable(false);
         tmanager.setEditable(false);
         tarea.setEditable(false);
@@ -137,11 +131,12 @@ public class PersonalDetails extends JPanel {
         tdistrictid.setEditable(false);
         tid.setEditable(false);
         tname.setEditable(false);
+        tdob.setEditable(false);
 
         // Create ButtonGroup and JRadioButton for gender.
         gendergrp = new ButtonGroup();
-        male = new JRadioButton("Male");
-        female = new JRadioButton("Female");
+        male = new JRadioButton("M");
+        female = new JRadioButton("F");
 
         // Create JButton for back and save
         JButton backButton = new JButton("Back");
@@ -161,7 +156,6 @@ public class PersonalDetails extends JPanel {
         email.setSize(100, 20);
         dob.setSize(100, 20);
         address.setSize(100, 20);
-        schoolname.setSize(100, 20);
         schoolid.setSize(100, 20);
         districtid.setSize(100, 20);
         manager.setSize(100, 20);
@@ -182,11 +176,10 @@ public class PersonalDetails extends JPanel {
         dob.setLocation(50, 260);
         address.setLocation(50, 290);
         schoolid.setLocation(450, 50);
-        schoolname.setLocation(450, 80);
-        districtid.setLocation(450, 110);
-        manager.setLocation(450, 140);
-        numberofforms.setLocation(450, 170);
-        areas.setLocation(450, 200);
+        districtid.setLocation(450, 80);
+        manager.setLocation(450, 110);
+        numberofforms.setLocation(450, 140);
+        areas.setLocation(450, 170);
 
         // setbounds of JTextField and JTextArea =>(position-x,position-y,width,height)
         tusername.setBounds(150, 50, 200, 20);
@@ -198,11 +191,10 @@ public class PersonalDetails extends JPanel {
         taddress.setBounds(150, 290, 200, 50);
         tdob.setBounds(150, 260, 200, 20);
         tschoolid.setBounds(600, 50, 200, 20);
-        tschoolname.setBounds(600, 80, 200, 20);
-        tdistrictid.setBounds(600, 110, 200, 20);
-        tmanager.setBounds(600, 140, 200, 20);
-        tnumberofforms.setBounds(600, 170, 200, 20);
-        tarea.setBounds(600, 200, 200, 20);
+        tdistrictid.setBounds(600, 80, 200, 20);
+        tmanager.setBounds(600, 110, 200, 20);
+        tnumberofforms.setBounds(600, 140, 200, 20);
+        tarea.setBounds(600, 170, 200, 20);
         backButton.setBounds(250, 380, 100, 25);
         saveButton.setBounds(450, 380, 100, 25);
 
@@ -236,8 +228,6 @@ public class PersonalDetails extends JPanel {
         add(tdob);
         add(schoolid);
         add(tschoolid);
-        add(schoolname);
-        add(tschoolname);
         add(districtid);
         add(tdistrictid);
         add(manager);
@@ -261,7 +251,12 @@ public class PersonalDetails extends JPanel {
                 TeacherDashboard.teacher.setPhoneNo(tmobile.getText());
                 TeacherDashboard.teacher.setAddress(taddress.getText());
                 TeacherDashboard.teacher.setPassword(tpassword.getText());
+                if (male.isSelected())
+                    TeacherDashboard.teacher.setGender('M');
+                else if (female.isSelected())
+                    TeacherDashboard.teacher.setGender('F');
                 TeacherDashboard.setValues(TeacherDashboard.teacher);
+                TeacherDashboard.setPhoneNo(TeacherDashboard.teacher);
             }
         });
 
