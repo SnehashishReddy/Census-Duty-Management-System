@@ -176,39 +176,45 @@ public class TeacherManagement extends JPanel {
                 row[6] = textassigned.getText();
                 row[7] = 0;
 
-                // add row to the model
-                String sql1 = "insert into user_ (username, name, date_of_birth, usertype, designation,gender) values (\'"
-                        + row[0] + "\',\'" + row[4] + "\',TO_DATE(\'" + row[5] + "\','DD/MM/YYYY') "
-                        + ", 'Teacher', 'Teacher','M');";
-                System.out.println(sql1);
+                if (textusername.getText().startsWith("CDMSMA")) {
+                    JOptionPane.showMessageDialog(pane, "You cannot add a teacher with a Manager username");
+                } else {
 
-                String sql2 = "insert into Authentication values (\'" + row[0] + "\', \'" + row[1] + "\');";
-                System.out.println(sql2);
+                    // add row to the model
+                    String sql1 = "insert into user_ (username, name, date_of_birth, usertype, designation,gender) values (\'"
+                            + row[0] + "\',\'" + row[4] + "\',TO_DATE(\'" + row[5] + "\','DD/MM/YYYY') "
+                            + ", 'Teacher', 'Teacher','M');";
+                    System.out.println(sql1);
 
-                String managerID = "";
-                ResultSet rsmid = PostgreSQLAccess
-                        .fetch("select employee_id from Manager where username =\'" + Login.givenUsername + "\';");
-                try {
-                    if (rsmid.next()) {
-                        managerID = rsmid.getString(1);
+                    String sql2 = "insert into Authentication values (\'" + row[0] + "\', \'" + row[1] + "\');";
+                    System.out.println(sql2);
+
+                    String managerID = "";
+                    ResultSet rsmid = PostgreSQLAccess
+                            .fetch("select employee_id from Manager where username =\'" + Login.givenUsername + "\';");
+                    try {
+                        if (rsmid.next()) {
+                            managerID = rsmid.getString(1);
+                        }
+                    } catch (SQLException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
                     }
-                } catch (SQLException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
+                    String sql3 = "insert into Teacher (username,teacher_id,school_id,assigned_area_id,district_id,manager_id) values ("
+                            + "\'" + row[0] + "\'," + "\'" + row[2] + "\'," + "\'" + row[3] + "\'," + "\'" + row[6]
+                            + "\',"
+                            + "\'" + RegPart.districtID + "\'," + "\'" + managerID + "\');";
+                    System.out.println(sql3);
+
+                    String sql4 = "insert into submission_status (teacher_id) values (\'" + row[2] + "\');";
+                    System.out.println(sql4);
+                    PostgreSQLAccess.executeUpdate(sql1);
+                    PostgreSQLAccess.executeUpdate(sql2);
+                    PostgreSQLAccess.executeUpdate(sql3);
+                    PostgreSQLAccess.executeUpdate(sql4);
+
+                    model.addRow(row);
                 }
-                String sql3 = "insert into Teacher (username,teacher_id,school_id,assigned_area_id,district_id,manager_id) values ("
-                        + "\'" + row[0] + "\'," + "\'" + row[2] + "\'," + "\'" + row[3] + "\'," + "\'" + row[6] + "\',"
-                        + "\'" + RegPart.districtID + "\'," + "\'" + managerID + "\');";
-                System.out.println(sql3);
-
-                String sql4 = "insert into submission_status (teacher_id) values (\'" + row[2] + "\');";
-                System.out.println(sql4);
-                PostgreSQLAccess.executeUpdate(sql1);
-                PostgreSQLAccess.executeUpdate(sql2);
-                PostgreSQLAccess.executeUpdate(sql3);
-                PostgreSQLAccess.executeUpdate(sql4);
-
-                model.addRow(row);
             }
         });
 
