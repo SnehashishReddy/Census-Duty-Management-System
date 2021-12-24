@@ -22,6 +22,8 @@ import frontend.custom.Logout;
 public class TeacherDashboard extends JPanel implements Logout {
     public static Teacher teacher;
     public static String givenUsername;
+    public static String teacher_id;
+    public static JTabbedPane tp;
 
     public static void assigning() {
         givenUsername = Login.givenUsername;
@@ -60,7 +62,8 @@ public class TeacherDashboard extends JPanel implements Logout {
             while (rs3.next()) {
                 System.out.println(rs3.getString(1));
                 teacher.setAreaCode(Integer.valueOf(rs3.getString("assigned_area_id")));
-                teacher.setTeacherID(rs3.getString("teacher_id"));
+                teacher_id = rs3.getString("teacher_id");
+                teacher.setTeacherID(teacher_id);
                 teacher.setSchoolID(rs3.getString("school_id"));
                 teacher.setSchoolName(rs3.getString("school_name"));
             }
@@ -77,6 +80,21 @@ public class TeacherDashboard extends JPanel implements Logout {
             e1.printStackTrace();
         }
         ViewForms.onTeacherLogin();
+
+        String q = "select is_submitted from submission_status where teacher_id='" + teacher_id + "';";
+        ResultSet rsq = PostgreSQLAccess.fetch(q);
+        try {
+            while (rsq.next()) {
+                int t = rsq.getInt(1);
+                if (t == 1) {
+                    tp.setEnabledAt(0, false);
+                    tp.setSelectedIndex(1);
+                }
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public static void setValues(Teacher teacher) {
@@ -112,7 +130,7 @@ public class TeacherDashboard extends JPanel implements Logout {
         topPanel.setLayout(new BorderLayout());
         JLabel l1 = new JLabel("Teacher Dashboard ");
         topPanel.add(l1, BorderLayout.WEST);
-        l1.setPreferredSize(new Dimension(400, 30));
+        l1.setPreferredSize(new Dimension(550, 30));
 
         JButton logoutButton = new JButton("Log Out");
         logoutButton.setBorder(new RoundedBorder(10));
@@ -126,11 +144,30 @@ public class TeacherDashboard extends JPanel implements Logout {
 
         topPanel.add(logoutButton, BorderLayout.EAST);
 
+        tp = new JTabbedPane();
+
+        JButton submissionButton = new JButton("Area Completed");
+        submissionButton.setBorder(new RoundedBorder(10));
+        submissionButton.setPreferredSize(new Dimension(10, 3));
+
+        submissionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(tp, "Thank You for contributing to the Indian Census");
+                String queryK = "update submission_status set is_submitted = 1 where teacher_id=\'" + teacher_id
+                        + "\';";
+                System.out.println(queryK);
+                PostgreSQLAccess.executeUpdate(queryK);
+                causeLogOut();
+            }
+        });
+
+        topPanel.add(submissionButton, BorderLayout.CENTER);
+
         topPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         add(topPanel, BorderLayout.NORTH);
 
-        JTabbedPane tp = new JTabbedPane();
         tp.setBounds(0, 0, 850, 450);
 
         Form form = new Form();

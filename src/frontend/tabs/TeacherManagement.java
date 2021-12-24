@@ -13,6 +13,7 @@ import backend.PostgreSQLAccess;
 import frontend.cards.Login;
 
 public class TeacherManagement extends JPanel {
+    public static JScrollPane pane;
 
     public TeacherManagement() {
 
@@ -21,11 +22,21 @@ public class TeacherManagement extends JPanel {
          */
 
         // create JFrame and JTable
-        final JTable table = new JTable();
+        final JTable table = new JTable() {
+            DefaultTableCellRenderer renderCenter = new DefaultTableCellRenderer();
+            { // initializer block
+                renderCenter.setHorizontalAlignment(SwingConstants.CENTER);
+            }
+
+            @Override
+            public TableCellRenderer getCellRenderer(int arg0, int arg1) {
+                return renderCenter;
+            }
+        };
 
         // create a table model and set a Column Identifiers to this model
         Object[] columns = { "Username", "Password", "Teacher ID", "School ID", "Full Name", "Date of Birth",
-                "Assigned Area ID" };
+                "Assigned Area ID", "Completed?" };
         final DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columns);
 
@@ -82,7 +93,7 @@ public class TeacherManagement extends JPanel {
         btnDelete.setBounds(550, 425, 100, 25);
 
         // create JScrollPane
-        JScrollPane pane = new JScrollPane(table);
+        pane = new JScrollPane(table);
         pane.setBounds(0, 0, 837, 300);
 
         add(pane);
@@ -110,6 +121,43 @@ public class TeacherManagement extends JPanel {
         add(btnDelete);
         add(btnUpdate);
 
+        String query = "select * from teacher_management";
+        ResultSet rsq = PostgreSQLAccess.fetch(query);
+        try {
+            Object[] fetchedRow = new Object[8];
+            System.out.println("Begin Teacher Management");
+            while (rsq.next()) {
+                fetchedRow[0] = rsq.getString(1);
+                fetchedRow[1] = rsq.getString(2);
+                fetchedRow[2] = rsq.getString(3);
+                fetchedRow[3] = rsq.getString(4);
+                fetchedRow[4] = rsq.getString(5);
+                fetchedRow[5] = rsq.getString(6);
+                fetchedRow[6] = rsq.getString(7);
+                fetchedRow[7] = rsq.getInt(8);
+                System.out.print(rsq.getString(1));
+                System.out.print(" ");
+                System.out.print(rsq.getString(2));
+                System.out.print(" ");
+                System.out.print(rsq.getString(3));
+                System.out.print(" ");
+                System.out.print(rsq.getString(4));
+                System.out.print(" ");
+                System.out.print(rsq.getString(5));
+                System.out.print(" ");
+                System.out.print(rsq.getString(6));
+                System.out.print(" ");
+                System.out.print(rsq.getString(7));
+                System.out.print(" ");
+                System.out.print(rsq.getInt(8));
+                System.out.printf("%n");
+                model.addRow(fetchedRow);
+            }
+        } catch (SQLException e2) {
+            // TODO Auto-generated catch block
+            e2.printStackTrace();
+        }
+
         // create an array of objects to set the row data
         final Object[] row = new Object[9];
 
@@ -126,6 +174,7 @@ public class TeacherManagement extends JPanel {
                 row[4] = textname.getText();
                 row[5] = textdob.getText();
                 row[6] = textassigned.getText();
+                row[7] = 0;
 
                 // add row to the model
                 String sql1 = "insert into user_ (username, name, date_of_birth, usertype, designation,gender) values (\'"
@@ -151,9 +200,13 @@ public class TeacherManagement extends JPanel {
                         + "\'" + row[0] + "\'," + "\'" + row[2] + "\'," + "\'" + row[3] + "\'," + "\'" + row[6] + "\',"
                         + "\'" + RegPart.districtID + "\'," + "\'" + managerID + "\');";
                 System.out.println(sql3);
+
+                String sql4 = "insert into submission_status (teacher_id) values (\'" + row[2] + "\');";
+                System.out.println(sql4);
                 PostgreSQLAccess.executeUpdate(sql1);
                 PostgreSQLAccess.executeUpdate(sql2);
                 PostgreSQLAccess.executeUpdate(sql3);
+                PostgreSQLAccess.executeUpdate(sql4);
 
                 model.addRow(row);
             }
@@ -170,15 +223,24 @@ public class TeacherManagement extends JPanel {
                 if (i >= 0) {
                     // remove a row from jtable
                     String tempUsername = model.getValueAt(i, 0).toString();
-                    String dQuery1 = "delete from Authentication where username=" + "\'" + tempUsername
-                            + "\';";
-                    String dQuery2 = "delete from Teacher where username=" + "\'" + tempUsername + "\';";
-                    String dQuery3 = "delete from user_ where username=" + "\'" + tempUsername + "\';";
+                    String tempteacherID = model.getValueAt(i, 2).toString();
+                    int is_submitted = Integer.parseInt(model.getValueAt(i, 7).toString());
+                    if (is_submitted == 1) {
+                        JOptionPane.showMessageDialog(pane,
+                                "A Teacher who is done with their census cannot be deleted");
+                    } else {
+                        String dQuery1 = "delete from submission_status where teacher_id=\'" + tempteacherID + "\';";
+                        String dQuery2 = "delete from Authentication where username=" + "\'" + tempUsername
+                                + "\';";
+                        String dQuery3 = "delete from Teacher where username=" + "\'" + tempUsername + "\';";
+                        String dQuery4 = "delete from user_ where username=" + "\'" + tempUsername + "\';";
 
-                    PostgreSQLAccess.executeUpdate(dQuery1);
-                    PostgreSQLAccess.executeUpdate(dQuery2);
-                    PostgreSQLAccess.executeUpdate(dQuery3);
-                    model.removeRow(i);
+                        PostgreSQLAccess.executeUpdate(dQuery1);
+                        PostgreSQLAccess.executeUpdate(dQuery2);
+                        PostgreSQLAccess.executeUpdate(dQuery3);
+                        PostgreSQLAccess.executeUpdate(dQuery4);
+                        model.removeRow(i);
+                    }
                 } else {
                     System.out
                             .println("There were issues while Deleting the Row(s).");

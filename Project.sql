@@ -262,7 +262,7 @@ insert into Teacher values
 ('CDMSTE0002','TE23012','SC751','021101','Eastwood High','0211','MA23011'),
 ('CDMSTE0003','TE23013','SC751','021101','Eastwood High','0211','MA23011'),
 ('CDMSTE0004','TE23014','SC751','021101','Eastwood High','0211','MA23011'),
-('CDMSTE0005','TE23015','SC751','021101','Eastwood High','0211','MA23011');
+('CDMSTE0005','TE23015','SC751','021101','Eastwood High','0211','MA23011'),
 
 insert into Director values
 ('CDMSMA0002','HIMACHAL PRADESH','02');
@@ -354,3 +354,25 @@ drop table Manager ;
 drop table Authentication;
 drop table phone_nos;
 drop table user_;
+
+create table submission_status
+(
+	teacher_id varchar(7) NOT NULL,
+	is_submitted int NOT NULL DEFAULT 0,
+	PRIMARY KEY(teacher_id),
+	FOREIGN KEY(teacher_id) REFERENCES teacher(teacher_id)
+);
+
+drop table submission_status;
+
+insert into submission_status(teacher_id) values ('TE23011'),('TE23012'),('TE23013'),('TE23014'),('TE23015'),('100'),('101');
+
+select * from submission_status;
+
+update submission_status set is_submitted = 0 where teacher_id='TE23014';
+
+user_, authentication, teacher, submission_status
+
+select username,password,teacher_id,school_id,name,date_of_birth,assigned_area_id,is_submitted from teacher natural join user_ natural join authentication natural join submission_status;
+
+select * from teacher_management;

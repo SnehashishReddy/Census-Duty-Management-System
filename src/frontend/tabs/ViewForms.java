@@ -52,7 +52,7 @@ public class ViewForms extends JPanel {
                 if (str.length() == 0) {
                     sorter.setRowFilter(null);
                 } else {
-                    sorter.setRowFilter(RowFilter.regexFilter(str));
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + str));
                 }
             }
         });
